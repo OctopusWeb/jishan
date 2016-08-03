@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	window.onload = function(){
+      		document.getElementById("payBtn").addEventListener("tap",function(){
+      			mui.openWindow({
+				    url: "pay.html", 
+				    id:"pay"
+				  });
+      		})
+      	}
+    </script>
+    
+    <style type="text/css">
+    *{font-family:"微软雅黑";}
+    .mui-bar{background: #fff;}
+    	#shop_name{height: 70px;background: #fff;overflow: hidden;border-bottom:1px #ccc solid ;}
+    	#shop_name h1{height: 60px;width: 100%;padding:10px 15px;font-size: 16px;line-height: 24px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;}
+    	#buy_info{background: #fff;border-top: 1px #ccc solid;margin-top: 15px;float: left;width: 100%;}
+    	#buy_info h1{font-size: 16px;color: #666;font-weight: 400;margin-top: 10px;float: left;line-height: 40px;width: 80px;text-align: right;}
+    	#buy_info h2{color: #f51515;font-size: 26px;line-height: 40px;float: left;width: auto;margin-left: 20px;}
+    	#buy_info h3{color:#000; float: left;width: 200px;margin-top:20px;margin-left: 20px;font-size: 18px;}
+    	#buy_info .name{float: left;width: 200px;margin-left: 20px;font-size: 18px;color: #333;font-weight: 400;margin-top:20px;}
+    	#buy_info h4{float: left;width: 200px;line-height: 30px;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;
+    				margin-left: 20px;font-size: 16px;color: #333;font-weight: 400;}
+    	#buy_info img{position: absolute;right: 10px;top: 0;height: 20%;top: 40%;}
+    	#buy_info #num{width: 94%;float: left;margin-left: 6%;border-bottom: 1px solid #d1d1d1;}
+    	#buy_info #num h2{color:#666;text-decoration: line-through;float: right;margin-right:3%;font-weight: lighter;font-size: 24px;}
+    	#buy_info #buy_num{width: 94%;float: left;margin-left: 6%;border-bottom: 1px solid #d1d1d1;}
+    	#buy_info #buy_num h2{float: right;margin-right:3%;font-weight: lighter;font-size: 24px;}
+    	#buy_info #buy_address{width: 94%;float: left;margin-left: 6%;border-bottom: 1px solid #d1d1d1;position: relative;}
+    	#buy_info #juan{width: 94%;float: left;margin-left: 6%;border-bottom: 1px solid #d1d1d1;position: relative;}
+    	#buy_info #juan h2{color: #22c064;float: right;margin-right:3%;font-weight: lighter;font-size: 24px;}
+    	#buy_info #buy_name{width: 94%;float: left;margin-left: 6%;border-bottom: 1px solid #d1d1d1;position: relative;}
+    	#buy_info #buy_state{width: 100%;height: auto;float: left;border-bottom: 1px solid #d1d1d1;}
+    	#buy_info #buy_state p{width: 80px;text-align: right;line-height: 80px;color: #666;margin-left: 6%;}
+    	#buy_info #buy_state span{float: left;color: #666;font-size: 14px;float: left;margin-left: 80px;margin-top: -60px;margin-right: 30px;padding-left: 6%;}
+    	#buy_info button{border: none;width: 90%;margin: 10px 5%;background: #f16a19;height: 40px;font-size: 16px;;}
+    	
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">订单详情</h1>
+	</header>
+	<div class="mui-content">
+	    <div id="shop_name"><h1>mojazz/猫爵 E5智能手环 运动手环 智能手机手表 计步器健康管理来电短计计...</h1></div>
+	    <div id="buy_info">
+	    	<div id="num"><h1>应付金额:</h1><h2>499元</h2></div>
+	    	<div id="buy_num"><h1>实付金额:</h1><h2>400元</h2></div>
+	    	<div id="juan"><h1>商家捐助:</h1><h2>25元</h2></div>
+	    	<div id="buy_address"><h1>送货地址:</h1><h3>广东  深圳市  福田区</h3><h4>中心三路福华路路口附近</h4><img src="../images/more.jpg"/></div>
+	    	<div id="buy_name"><h1>用户姓名:</h1><h3 class="name">用户姓名</h3><h4>15546661234</h4><img src="../images/more.jpg"/></div>
+	    	<div id="buy_state"><p>特别声明:</p><span>系统会自动对您的捐助发送给项目组织者，非常感谢！</span></div>
+	    	<button type="button" class="mui-btn mui-btn-warning" id="payBtn">去支付</button>
+	    </div>
+	</div>
+</body>
+</html>

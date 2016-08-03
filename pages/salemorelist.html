@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    
+    <style type="text/css">
+    	*{margin: 0;padding: 0;font-family: "微软雅黑";background: #fff;}
+    	.mui-content{background: #fff;}
+    	.mui-content img{width: 100%;height: auto;float: left;}
+    	.mui-content h1{float: left;width: 96%;font-size: 16px;margin: 15px 2%;line-height: 24px;color: #333;font-weight: lighter;}
+    	.mui-content h2{float: left;margin-right:2%;color: #ea203e;font-weight: lighter;}
+    	.mui-content a{color: #EA203E;float: left;margin-left: 3%;line-height: 48px;}
+    	.mui-content h3{float: left;color: #999999;font-size: 14px;margin-top: 15px;font-weight: lighter;line-height: 20px;}
+    	.mui-content b{text-decoration: line-through;font-weight: lighter;}
+    	.mui-content p{float: left;color: #999;float: right;margin-top: 15px;margin-right: 10px;}
+    	.mui-content span{float: right;margin-top: 14px;margin-right: 10px;color: #22c064;font-weight: 600;font-size: 20px;
+    					font-weight: lighter;}
+    	.mui-content div{float: left;width: 96%;margin: 0 2%;border-top: 1px #cccccc solid;height: 60px;}
+    	.mui-content div h1{float: left;width: auto;line-height: 30px;margin: 15px;}
+    	.mui-content div .mui-btn{float: left;margin: 15px;height:30px;background: #22c064;font-size: 16px;border-radius: 5px;line-height: 10px;border: none;}
+    	.mui-content div p{float: left;width: auto;color: #666;font-size: 14px;margin-left: 2%;}
+    	.mui-content div span{float: left;color: #666;font-weight: 400;width: 82%;margin: 0 9%;margin-top: -32px;font-size: 14px;padding-bottom: 70px;}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+	    <img src="images/shop.jpg" id="banner"/>
+	    <h1></h1>
+	    <a>￥</a><h2></h2><h3>市场价:<b></b></h3>
+	    <p>件</p><span>5</span><p>剩余:</p>
+	    
+	    <div class="shopInfo">
+	    	<h1>要求</h1><button type="button" class="mui-btn mui-btn-success">VIP1+</button>
+	    </div>
+	    <div class="shopInfo">
+	    	<h1>要求</h1><h1>1件</h1>
+	    </div>
+	    <div id="info">
+	    	<h1>商品介绍</h1>
+	    	
+	    	<p>注：</p>
+	    	<span>
+	    		
+	    	</span>
+	    </div>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+  	window.onload = function(){
+		var code = new core();
+		var userInfo = JSON.parse(localStorage["user"])
+		var data = {act:'GetJustSelInfo',member_id:userInfo.uid,goods_id:localStorage["goodsId"]};
+		code.sendXhr(data,successGetJustSelInfo,"GetJustSelInfo","http://103.27.5.53:8070/App/JustSellingApi.ashx");
+		function successGetJustSelInfo(xhr){
+			var GetJustSelInfo = xhr.msg;
+			mui("#banner")[0].src = GetJustSelInfo.goods_image;
+			mui(".mui-content h1")[0].innerHTML = GetJustSelInfo.goods_name;
+			mui(".mui-content b")[0].innerHTML = GetJustSelInfo.goods_price;
+			mui(".mui-content h2")[0].innerHTML = GetJustSelInfo.xianshi_price;
+			mui(".mui-content span")[0].innerHTML = GetJustSelInfo.goods_storage;
+			mui(".mui-btn-success")[0].innerHTML = "VIP"+GetJustSelInfo.yqcontent.viptype+"+";
+			mui(".shopInfo h1")[2].innerHTML = GetJustSelInfo.yqcontent.buycount+"件";
+			
+			var index = '<h1>'+GetJustSelInfo.goods_jingle+'</h1>'; 
+			for(var i=0;i<GetJustSelInfo.imglist.length;i++){
+				var index0='<img src="'+GetJustSelInfo.imglist[i].goods_image+'"/>'
+				index+=index0;
+			}
+			var idnex1 = '<p>注：</p><span>'+GetJustSelInfo.mobile_body+'</span>'
+	    	index+=idnex1;
+			mui("#info")[0].innerHTML = index;
+			
+			
+		}
+	}
+</script>
+
+</html>

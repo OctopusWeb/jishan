@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    <style type="text/css">
+    	*{margin: 0;padding: 0;font-family: "微软雅黑";list-style: none;}
+    	.mui-bar{background: #fff;}
+    	.mui-content ul{width: 100%;float: left;}
+    	.mui-content ul li{float: left;width: 100%;background: #fff;height: 50px;position: relative;border-bottom:1px #ccc solid ;}
+    	.mui-content ul li:first-child{height: 70px;}
+    	.mui-content ul li:first-child span{line-height: 70px;}
+    	.mui-content ul li img{width: 60px;height: 60px;float: left;border-radius: 60px;overflow: hidden;margin-top: 5px;margin-left: 10px;}
+    	.mui-content ul li .icon{height: 15px;width: auto;position: absolute;right: 10px;top: 50%;margin-top: -8px;}
+    	.mui-content ul li span{font-size: 14px;float: right;line-height: 50px;margin-right: 40px;color: #999999;}
+    	.mui-content ul li h1{font-size: 16px;float: left;line-height: 40px;margin-left: 20px;font-weight: lighter;}
+    	.mui-content ul li p{font-size: 14px;float: left;line-height: 50px;margin-left: 10px;color: #999;}
+    	.mui-content ul li:last-child{border-top:1px #ccc solid;margin-top: 20px;}
+    	
+    	.mui-content button{border: none;width: 80%;float: left;margin: 40px 10%;background: #fe6f3f;padding: 10px 0;font-size: 16px;;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">个人信息</h1>
+	</header>
+	<div class="mui-content">
+	    <ul>
+	    	<li><img src="../images/head.jpg"><span>更换头像</span><img src="../images/more.jpg" class="icon"/></li>
+	    	<li><h1>昵称</h1><p>用户名</p><span>修改</span><img src="../images/more.jpg" class="icon"/></li>
+	    	<li id="number"><h1>手机号</h1><span></span><img src="../images/more.jpg" class="icon"/></li>
+	    	<li id="password"><h1>密码</h1><span>修改</span><img src="../images/more.jpg" class="icon"/></li>
+	    	<li><h1>收货地址</h1><span>修改/添加</span><img src="../images/more.jpg" class="icon"/></li>
+	    </ul>
+	    <button type="button" class="mui-btn mui-btn-warning">退出当前账号</button>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	window.onload=function(){
+      		initEvent();
+      		function initEvent(){
+      			var code = new core();
+				var userInfo = JSON.parse(localStorage["user"]);
+				var data = {act:'MyCenterInfo',member_id:userInfo.uid};
+				code.sendXhr(data,successMyCenterInfo,"MyCenterInfo");
+				function successMyCenterInfo(xhr){
+					var MyCenterInfo = xhr.msg;	
+					mui(".mui-content ul li img")[0].src=MyCenterInfo.member_avatar;
+	      			mui(".mui-content ul li p")[0].innerHTML = MyCenterInfo.member_name;
+	      			mui("#number span")[0].innerHTML = MyCenterInfo.member_mobile;	
+				}
+      			
+      			
+      		}
+      		mui(".mui-content ul li")[0].addEventListener("tap",function(){
+      			galleryImg();
+      			function galleryImg() {
+				    plus.gallery.pick( function(path){
+				    	var code = new core();
+						var contents = e.value;
+						var userInfo = JSON.parse(localStorage["user"]);
+						var data = {act:'UploadMyPhoto',member_id:userInfo.uid,imgfile:path};
+						code.sendXhr(data,successUploadMyPhoto,"UploadMyPhoto");
+						function successUploadMyPhoto(xhr){
+							initEvent();
+      						plus.nativeUI.toast(xhr.msg);
+						}
+				    }, function ( e ) {
+				    	console.log( "取消选择图片" );
+				    }, {filter:"image"} );
+				}
+      		})
+      		mui(".mui-content ul li")[1].addEventListener("tap",function(){
+				plus.nativeUI.prompt( "更改用户名: ", function(e){
+					if(e.index==0){
+						var code = new core();
+						var contents = e.value;
+						var userInfo = JSON.parse(localStorage["user"]);
+						var data = {act:'UpdateMemberName',member_id:userInfo.uid,newmember_name:contents};
+						code.sendXhr(data,successUpdateMemberName,"UpdateMemberName");
+					}
+				},"请输入", "新用户名", ["确定","取消"]);
+			})
+      		function successUpdateMemberName(xhr){
+      			initEvent();
+      			plus.nativeUI.toast(xhr.msg);
+      		}
+			document.getElementById("number").addEventListener("tap",function(){
+				mui.openWindow({
+					url:"minenumber.html",
+					id:"minenumber"
+				})
+			});
+			document.getElementById("password").addEventListener("tap",function(){
+				mui.openWindow({
+					url:"minepassword.html",
+					id:"minepassword"
+				})
+			});
+		}
+
+    </script>
+</html>

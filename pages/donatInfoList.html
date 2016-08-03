@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	
+      	window.onload = function(){
+      		document.getElementById("handsup").addEventListener("tap",function(){
+      			mui.openWindow({
+				    url: "donpay.html", 
+				    id:"donpay"
+				  });
+      		})
+      	}
+      	
+    </script>
+    <style type="text/css">
+    	*{margin: 0;padding: 0;font-family: "微软雅黑";}
+    	.mui-bar{background: #fff;}
+    	.mui-title{font-size: 16px;font-weight: bold;font-family: "微软雅黑";}
+    	.donatGroup:first-child{margin-top: 0px;}
+    	.donatGroup{width: 100%;float: left;background: #fff;margin-top: 15px;}
+    	.donatGroup img{width: 100%;float: left;height: auto;}
+    	.donatGroup h1{float: left;font-size: 16px;width: 92%;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;
+    					margin: 15px 4%;}
+    	.donatGroup p{float: left;font-size: 14px;width: 92%;margin-left: 4%;}
+    	.donatGroup .like{width: 100%;border-top: 1px solid #ccc;height: auto;float: left;}
+    	.donatGroup .like button{float: right;margin: 10px;color:#666;}
+    	
+    	.donatGroup video{padding:15px 10px;}
+    	
+    	.donatGroup h2{font-size: 19px;float: left;width: 92%;margin: 15px 4%;font-weight: lighter;}
+    	.donatGroup ul {width: 92%;margin:0 4% 20px 4%;overflow: hidden;height: 50px;}
+    	.donatGroup ul li{width: 50px;height: 50px;list-style: none;float: left;border-radius: 50px;overflow: hidden;margin-left: 10px;}
+    	.donatGroup ul li img{width: 100%;height: auto;}
+    	
+    	#donatGroup_info{margin-top: 20px;}
+    	.donatGroup h3{float: right;color: #22c064;font-size: 16px;font-weight: 400;}
+    	.donatGroup h4{float: right;font-size: 14px;font-weight: 400;margin-right: 4%;margin-left:1%;color: #666;line-height: 20px;}
+    	.donatGroup #handsup{background: #22c064;height: 40px;width: 90%;margin: 20px 5%;font-size: 16px;}
+    	
+    	.otherSale{width: 92%;margin: 20px 4%;height: 100px;overflow: hidden;}
+    	.otherSale img{width: 100px;height: auto;float: left;}
+    	.otherSale h5{float: left;width: 100%;padding-left:110px;margin-top: -100px;color: #333;font-size: 16px;font-weight: bold;line-height:20px;height:40px;overflow: hidden;}
+    	.otherSale h6{float: left;width: 100%;padding-left:110px;margin-top: -55px;line-height: 18px;font-size: 14px;height:54px;overflow: hidden;margin-bottom: 0;}
+    	.mui-btn-success{border: none;}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+	    <div class="donatGroup">
+	    	<img src="../images/donatimg.jpg"/>
+	    	<h1>支教偏远山区 为爱众筹</h1>
+	    	<p>新疆伊犁州新源县别斯托别乡学校的15个孩子来说终身难忘，因为这一天，他们将在海航旅游“为爱而行 助飞梦想”活动的安排下，走出边疆，来到梦寐以求的北京。伴随着大巴车抵达环境优美的北京唐拉雅秀酒店，孩子们映入眼帘的是海航旅游集团、北京师范大学的志愿者准备的精致礼物。欢快的穿上了印制了本次活动的T恤衫，高喊“北京，我们来了！”</p>
+	    	<div class="like"><button type="button" class="mui-btn">赞8,558</button><button type="button" class="mui-btn">关注4,558</button></div>
+	    </div>
+	    
+	    <div class="donatGroup">
+	    	<video width="100%" autoplay="true">
+	    		<source src="../images/1.mp4" type="audio/mp4"></source>
+	    		"您的浏览器不支持播放视频功能或者未联网"
+	    	</video>
+	    </div>
+	    <div class="donatGroup">
+	    	<h2>爱心支持者</h2>
+	    	<ul>
+	    		<li><img src="../images/head.jpg"/></li>
+	    		<li><img src="../images/head.jpg"/></li>
+	    		<li><img src="../images/head.jpg"/></li>
+	    		<li><img src="../images/head.jpg"/></li>
+	    	</ul>
+	    </div>
+	    <div class="donatGroup">
+	    	<p  id="donatGroup_info">新疆伊犁州新源县别斯托别乡学校的15个孩子来说终身难忘，因为这一天，他们将在海航旅游“为爱而行 助飞梦想”活动的安排下，走出边疆，来到梦寐以求的北京。伴随着大巴车抵达环境优美的北京唐拉雅秀酒店，孩子们映入眼帘的是海航旅游集团、北京师范大学的志愿者准备的精致礼物。欢快的穿上了印制了本次活动的T恤衫，高喊“北京，我们来了！”</p>
+	    	<h4>支持者</h4><h3>6,195位 </h3>
+	    	<button type="button" class="mui-btn mui-btn-success" id="handsup">去支持</button>
+	    </div>
+	    <div class="donatGroup">
+	    	<h1>其他义卖</h1>
+	    	<div class="otherSale">
+	    		<img src="../images/otherSale.jpg"/>
+	    		<h5>感觉很不错，决定转给你们，给生活添彩</h5>
+	    		<h6>因为它曾多次执行毛泽东主席及其他中央领导人的重要专机任务。同学们争相和熟悉的飞机模型合影</h6>
+	    	</div>
+	    	<div class="otherSale">
+	    		<img src="../images/otherSale.jpg"/>
+	    		<h5>感觉很不错，决定转给你们，给生活添彩</h5>
+	    		<h6>因为它曾多次执行毛泽东主席及其他中央领导人的重要专机任务。同学们争相和熟悉的飞机模型合影</h6>
+	    	</div>
+	    	<div class="otherSale">
+	    		<img src="../images/otherSale.jpg"/>
+	    		<h5>感觉很不错，决定转给你们，给生活添彩</h5>
+	    		<h6>因为它曾多次执行毛泽东主席及其他中央领导人的重要专机任务。同学们争相和熟悉的飞机模型合影</h6>
+	    	</div>
+	    </div>
+	</div>
+</body>
+</html>

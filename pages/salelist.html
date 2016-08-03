@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" /> 
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    <style type="text/css">
+	    html,body{width: 100%;height: 100%;position: relative;}
+	    .mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+	    .mui-content{width: 100%;height: 100%;position: relative;}
+	    .mui-slider{width: 100%;height: 100%;float: left;}
+	    .mui-slider-group{width: 100%;height: 100%;float: left;}
+    	*{margin: 0;padding: 0;font-family: "微软雅黑";}
+    	#sliderSegmentedControl{background: #f5f5f5;border-bottom: 1px #C2C2C2 solid;position: fixed;z-index: 100;}
+    	#sliderSegmentedControl .mui-active{color: #22C064;}
+    	#sliderProgressBar{width: 30%;margin-left: 20%;background: #22C064;position: fixed;top: 38px;z-index: 100;}
+    	#love{width: 50%;float: left;text-align: right;padding-right:20px ;font-family: "微软雅黑";}
+    	#near{float: left;width: 50%;text-align: left;padding-left: 20px;font-family: "微软雅黑";}
+    	.mui-scroll{width: 90%;background: none;margin-left: 5%;}
+    	.mui-scroll ul{width: 100%;float: left;margin-top: 40px; background: none;}
+    	.mui-scroll ul li{list-style: none;background: #fff;width: 100%;float: left;position: relative;margin-top: 10px;}
+    	.mui-scroll ul li img{float: left;padding: 2%;}
+    	.mui-scroll ul li h1,h2,h3,h4,p,span{float:left;text-overflow: ellipsis;font-size: 16px;overflow: hidden;white-space:nowrap;}
+    	.mui-scroll ul li h1{width: 96%;line-height: 30px;margin-left:3%;font-weight: lighter;}
+    	.mui-scroll ul li a{float: left;color: #ea203e;line-height: 34px;margin-left:3%;}
+    	.mui-scroll ul li h2{margin-right:2%;font-size: 20px;color: #ea203e;line-height: 20px;font-weight:lighter}
+    	.mui-scroll ul li h3{width: 100px;font-size: 14px;color: #999;line-height: 20px;font-weight:lighter}
+    	.mui-scroll ul li b{font-weight:200!important;text-decoration: line-through;line-height:25px;;}
+    	.mui-scroll ul li p{width:auto;font-size: 14px;text-align: right;color: #666;line-height: 20px;float: right;padding:0;margin-top:8px;}
+    	.mui-scroll ul li span{width: auto;font-size: 14px;text-align: left;color: #00d258;line-height: 20px;float: right;margin-right: 10px;
+    							padding:0;margin-top:8px;}
+    	
+    	#item3mobile .mui-scroll ul li img{padding: 0%;}
+    	#item3mobile .mui-scroll ul li #icon{height: 50px;width: 50px;background: #fff;float: left;margin-top: -25px;margin-left: 10px;}
+    	#item3mobile .mui-scroll ul li #icon img{padding: 3px;}
+    	
+    	#near_sale h1{padding-left: 70px;margin-top: -25px;font-weight: bold;}
+    	#near_sale h3{float: left;width: auto;margin-left: 10px;line-height: 20px;}
+    	#near_sale p{float: right;width: auto;line-height: 20px;margin-top: 5px;margin-right:3%;}
+    	#near_sale b{font-size:18px;color:#000;text-decoration: none;font-family:"微软雅黑";
+    				font-weight:bold;}*/
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item" href="#item2mobile" id="love">爱心义卖</a>
+					<a class="mui-control-item" href="#item3mobile" id="near">周边义店</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+				<div class="mui-slider-group">
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="love_sale">
+								<ul class="mui-table-view">
+								</ul>
+							</div>
+						</div>
+
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="near_sale">
+								<ul class="mui-table-view">
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	
+</body>
+<script src="../js/mui.pullToRefresh.js"></script>
+<script src="../js/mui.pullToRefresh.material.js"></script>
+<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+		(function($) {
+				//阻尼系数
+				var deceleration = mui.os.ios?0.003:0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration:deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					var pageId0=0;
+					var pageId1=0;
+					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							down: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										downFun(index);
+										self.endPullDownToRefresh();
+									}, 1000);
+								}
+							},
+							up: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										upFun(index,pageId0,pageId1)
+										self.endPullUpToRefresh();
+									}, 1000);
+								}
+							}
+						});
+						downFun(0);
+						downFun(1);
+						function downFun(index){
+							if(index==0){
+								pageId0 = 0;
+								var code = new core();
+								var userInfo = JSON.parse(localStorage["user"])
+								var data = {act:'GetJustSelList',member_id:userInfo.uid,pageIndex:pageId0};
+								code.sendXhr(data,successGetJustSelList1,"GetJustSelList","http://103.27.5.53:8070/App/JustSellingApi.ashx");
+								function successGetJustSelList1(xhr){
+									var GetJustSelList = xhr.msg;
+									var html2 = ""
+									for (var i=0;i<GetJustSelList.length;i++) {
+										var html21 = '<li class="'+GetJustSelList[i].goods_id+'"><img src="'+GetJustSelList[i].goods_image+
+										'"/><h1>'+GetJustSelList[i].goods_name+
+										' </h1><a>￥</a><h2>'+GetJustSelList[i].xianshi_price+
+										'</h2><h3>市场价:<b>'+GetJustSelList[i].goods_price+
+										'</b></h3><span>'+GetJustSelList[i].goods_storage+'件</span><p>剩余：</p></li>';
+										html2+=html21;
+									}
+									mui("#love_sale ul")[0].innerHTML = html2;
+									for(var i=0;i<mui("#love_sale ul li").length;i++){
+						      			liEvent(mui("#love_sale ul li"),i);
+						      		}
+								}
+								
+							}else{
+								pageId1 = 0;
+								var code = new core();
+								var userInfo = JSON.parse(localStorage["user"])
+								var data = {act:'nearStoreList',member_id:userInfo.uid,pageIndex:pageId0};
+								code.sendXhr(data,successGetJustSelList2,"nearStoreList","http://103.27.5.53:8070/App/JustSellingApi.ashx");
+								function successGetJustSelList2(xhr){
+									var GetJustSelList = xhr.msg;
+									var html3 = ""
+									for (var i=0;i<GetJustSelList.length;i++) {
+										var html31 ='<li class="'+GetJustSelList[i].storeId+'"><img src="'+GetJustSelList[i].storeImg+
+										'"/><div id="icon"><img src="'+GetJustSelList[i].store_avatar+'"/></div><h1>'+
+										GetJustSelList[i].goods_id+'</h1><h3>店铺义品<b>'+GetJustSelList[i].goodsCounts+
+										'</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li>'
+										html3+=html31;
+									}
+									mui("#near_sale ul")[0].innerHTML = html3;
+									for(var i=0;i<mui("#near_sale ul li").length;i++){
+						      			liEvent(mui("#near_sale ul li"),i);
+						      		}
+								}
+								
+							}
+						}
+						function upFun(index,pageId0,pageId1){
+							if(index==0){
+								pageId0 ++;
+								var code = new core();
+								var userInfo = JSON.parse(localStorage["user"])
+								var data = {act:'GetJustSelList',member_id:userInfo.uid,pageIndex:pageId0};
+								code.sendXhr(data,successGetJustSelList3,"GetJustSelList","http://103.27.5.53:8070/App/JustSellingApi.ashx");
+								function successGetJustSelList3(xhr){
+									var GetJustSelList = xhr.msg;
+									var html2 = mui("#love_sale ul")[0].innerHTML;
+									for (var i=0;i<GetJustSelList.length;i++) {
+										var html21 = '<li class="'+GetJustSelList[i].goods_id+'"><img src="'+GetJustSelList[i].goods_image+
+										'"/><h1>'+GetJustSelList[i].goods_name+
+										' </h1><a>￥</a><h2>'+GetJustSelList[i].xianshi_price+
+										'</h2><h3>市场价:<b>'+GetJustSelList[i].goods_price+
+										'</b></h3><span>'+GetJustSelList[i].goods_storage+'件</span><p>剩余：</p></li>';
+										html2+=html21;
+									}
+									mui("#love_sale ul")[0].innerHTML = html2; 
+									for(var i=0;i<mui("#love_sale ul li").length;i++){
+						      			liEvent(mui("#love_sale ul li"),i);
+						      		}
+								}
+								
+							}else{
+								pageId1 ++;
+								var code = new core();
+								var userInfo = JSON.parse(localStorage["user"])
+								var data = {act:'nearStoreList',proId:"11000",pageIndex:pageId0};
+								code.sendXhr(data,successGetJustSelList4,"nearStoreList","http://103.27.5.53:8070/App/JustSellingApi.ashx");
+								function successGetJustSelList4(xhr){
+									var GetJustSelList = xhr.msg;
+									var html3 = mui("#near_sale ul")[0].innerHTML;
+									for (var i=0;i<GetJustSelList.length;i++) {
+										var html31 ='<li class="'+GetJustSelList[i].storeId+'"><img src="'+GetJustSelList[i].storeImg+
+										'"/><div id="icon"><img src="'+GetJustSelList[i].store_avatar+'"/></div><h1>'+
+										GetJustSelList[i].goods_id+'</h1><h3>店铺义品<b>'+GetJustSelList[i].goodsCounts+
+										'</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li>'
+										html3+=html31;
+									}
+									mui("#near_sale ul")[0].innerHTML = html3;
+									for(var i=0;i<mui("#near_sale ul li").length;i++){
+						      			liEvent(mui("#near_sale ul li"),i);
+						      		}
+								}
+								
+							}
+						}
+					});
+					function AddListener(){						
+			      		for(var i=0;i<pages2.length;i++){
+			      			liEvent(pages2,i);
+			      		}
+			      	}
+			      	function liEvent(pages,x){
+			      		
+			      		pages[x].addEventListener("tap",function(){
+			      			localStorage.goodsId=pages[x].className;
+		      				mui.openWindow({
+							    url: "salemore.html", 
+							    id:"salemore"
+							  });
+			      		})
+			      	}
+				});
+			})(mui);
+//    	window.onload = function(){
+//    		var deceleration = mui.os.ios?0.003:0.0009;
+//				$('.mui-scroll-wrapper').scroll({
+//					bounce: false,
+//					indicators: true, //是否显示滚动条
+//					deceleration:deceleration
+//				});
+//    		(function($) {
+//				$('.mui-scroll-wrapper').scroll({
+//					indicators: true //是否显示滚动条
+//				});
+//
+//				var html2 = '<ul><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li></ul>';
+//				var html3 = '<ul><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li></ul>';
+//				var item2 = document.getElementById('item2mobile');
+//				var item3 = document.getElementById('item3mobile');
+//				item2.querySelector('.mui-scroll').innerHTML = html2;
+//				item3.querySelector('.mui-scroll').innerHTML = html3;
+//				AddListener();
+//				function AddListener(){
+//		      		var pages1 = document.getElementById("item2mobile").getElementsByTagName("li");
+//		      		var pages2 = document.getElementById("item3mobile").getElementsByTagName("li");
+//		      		for(var i=0;i<pages1.length;i++){
+//		      			liEvent(pages1,i);
+//		      		}
+//		      		for(var i=0;i<pages2.length;i++){
+//		      			liEvent(pages2,i);
+//		      		}
+//		      	}
+//		      	function liEvent(pages,x){
+//		      		pages[x].addEventListener("tap",function(){ 
+//		      				mui.openWindow({
+//							    url: "salemore.html", 
+//							    id:"salemore"
+//							  });
+//		      		})
+//		      	}
+//			})(mui);
+//    	}
+      	
+    </script>
+</html>

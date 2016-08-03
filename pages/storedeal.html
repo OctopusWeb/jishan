@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init({
+      		subpages:[{
+		      url:"storedeallist.html",
+		      id:"deallist",
+		      styles:{
+		        top:"40px",
+		        bottom:"50px",
+		        bounce: 'vertical',
+				bounceBackground:"#ffffff"
+		      }
+		    }]
+      	});
+      	
+      	window.onload = function(){
+      		document.getElementById("agree").addEventListener("tap",function(){
+      			mui.openWindow({
+				    url: "storepush.html", 
+				    id:"storepush"
+				  });
+      		})
+      	}
+    </script>
+    <style type="text/css">
+    	*{font-family: "微软雅黑";}
+    	.mui-bar{background: #fff;}
+    	.mui-title{font-size: 16px;font-weight: bold;;}
+    	#foot{bottom: 0;height: 50px;}
+    	#foot button{border-radius: 20px;width:80px;float: left;margin-left: 10px;}
+    	#foot button:last-child{float: right;margin-right: 10px;color: #22C064;border:#22C064 1px solid}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">义店</h1>
+	</header>
+	<div class="mui-bar" id="foot">
+		<button type="button" class="mui-btn mui-btn-outlined mui-action-back">取消</button>
+		<button type="button" class="mui-btn mui-btn-outlined" id="agree">同意</button>
+	</div>
+</body>
+</html>

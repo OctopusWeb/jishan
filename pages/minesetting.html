@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    <style type="text/css">
+    	*{margin: 0;padding: 0;font-family: "微软雅黑";list-style: none;}
+    	.mui-bar{background: #fff;}
+    	.mui-content ul{width: 100%;float: left;margin-top: 20px;border-top: 1px #ccc solid;}
+    	.mui-content ul li{float: left;width: 100%;background: #fff;height: 50px;position: relative;border-bottom:1px #ccc solid ;}
+    	.mui-content ul li img{width: 60px;height: 60px;float: left;border-radius: 60px;overflow: hidden;margin-top: 5px;margin-left: 10px;}
+    	.mui-content ul li .icon{height: 15px;width: auto;position: absolute;right: 10px;top: 50%;margin-top: -8px;}
+    	.mui-content ul li span{font-size: 14px;float: right;line-height: 50px;margin-right: 40px;color: #999999;}
+    	.mui-content ul li h1{font-size: 16px;float: left;line-height: 40px;margin-left: 20px;font-weight: lighter;}
+    	.mui-content ul li p{font-size: 14px;float: left;line-height: 50px;margin-left: 10px;color: #999;}
+    	.mui-content ul .select{border-top:1px #ccc solid;margin-top: 20px;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">设置</h1>
+	</header>
+	<div class="mui-content">
+	    <ul>
+	    	<li><h1>图片设置</h1><img src="../images/more.jpg" class="icon"/></li>
+	    	<li><h1>消息提醒设置</h1><img src="../images/more.jpg" class="icon"/></li>
+	    	<li><h1>清理本地缓存</h1><span>9.88M</span><img src="../images/more.jpg" class="icon"/></li>
+	    	<li class="select"><h1>意见反馈</h1><img src="../images/more.jpg" class="icon"/></li>
+	    	<li id="about"><h1>关于</h1><span>V1.0.0</span><img src="../images/more.jpg" class="icon"/></li>
+	    </ul>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+	window.onload=function(){
+		document.getElementById("about").addEventListener("tap",function(){
+			mui.openWindow({
+				url:"about.html",
+				id:"about"
+			})
+		});
+		mui(".mui-content ul li")[3].addEventListener("tap",function(){
+			plus.nativeUI.prompt( "请输入: ", function(e){
+				if(e.index==0){
+					var code = new core();cd 
+					
+					var contents = e.value;
+					var userInfo = JSON.parse(localStorage["user"])
+					var data = {act:'AddFeedback',member_id:userInfo.uid,member_name:userInfo.uname,content:contents};
+					code.sendXhr(data,successAddFeedback,"AddFeedback");
+				}
+			},"意见反馈", "反馈内容", ["发送","取消"]);
+		})
+		function successAddFeedback(xhr){
+			plus.nativeUI.toast(xhr.msg);
+		}
+	}
+</script>
+</html>

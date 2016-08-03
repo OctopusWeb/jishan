@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init({
+		    subpages:[{
+		      url:"salemorelist.html",//子页面HTML地址，支持本地地址和网络地址
+		      id:"salemorelist",//子页面标志
+		      styles:{
+		        top:"40px",
+		      	bottom:"50px",
+		        bounce: 'vertical',
+				bounceBackground:"#ffffff"
+		      }
+		    }]
+		});
+		window.onload = function(){
+			document.getElementById("buyBtn").addEventListener("tap",function(){
+				mui.openWindow({
+				    url: "salebuy.html", 
+				    id:"salebuy"
+				  });
+			})
+		}
+
+    </script>
+    
+    <style type="text/css">
+    	*{margin: 0; padding: 0;}
+    	.mui-bar{background: #fff;}
+    	#foot{bottom: 0;background: rgba(0, 0, 0, 0.9);height: 50px;}
+    	#foot h1{color: #ccc;font-size: 14px;float: left;height: 40px;line-height: 40px;font-family: "微软雅黑";font-weight: lighter;}
+    	#foot button{float: right;margin-right: 20px;background: #fd6e3e;font-family: "微软雅黑";border:0;width:90px;height:35px;font-size: 16px;;}
+    	#foot img{float: left;height: 50%;margin:15px 10px;}
+    	.mui-bar h1{font-family: "微软雅黑";font-weight: bold;}
+
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">商品详情</h1>
+	</header>
+	
+	<div class="mui-bar" id="foot">
+		<img src="../images/share.png"/>
+		<h1>爱心分享</h1>
+		<button type="button" class="mui-btn mui-btn-warning" id="buyBtn">购买</button>
+	</div>
+</body>
+</html>

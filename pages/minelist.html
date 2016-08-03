@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    
+    <style type="text/css">
+    	*{margin: 0;padding: 0;font-family: "微软雅黑";list-style: none;}
+    	#banner{width: 100%;position: relative;height: auto;float: left;}
+    	#banner img{width: 100%;float: left;height: auto;}
+    	#banner #heads{width: 20%;height: auto;position: absolute;left: 40%;top: 10%;}
+    	#banner #head{width: 100%;float: left;border-radius: 100%;border: #9bc9c8 3px solid;}
+    	#banner #VIP{width: 30%;position: absolute;right: -10px;}
+    	#banner .score{width:50%;position: absolute;bottom:10%;right: 0%;}
+    	#banner .score h1{font-size: 18px;color: #fff;float: left;width: 50%;text-align: left;font-weight: 400;line-height: 38px;}
+    	#banner .score h2{font-size: 14px;color: #fff;float: left;width: 50%;text-align: right;font-weight: 400;line-height:40px ;}
+    	#banner .score1{right: 50%;}
+    	.setGroup{width: 100%;float: left;background: #fff;margin-top: 20px;}
+    	.setGroup li {float: left;width: 100%;border-top: 1px solid #d1d1d1;height: 60px;}
+    	.setGroup li:last-child{border: 1px solid #D1D1D1;}
+    	.setGroup li .icon{float: left;height: 36px;margin-top: 12px;margin-left: 20px;}
+    	.setGroup li h3{line-height: 40px;height: 30px;float: left;font-size: 16px;margin-left: 10px;margin-top: 10px;font-weight: 400;}
+    	.setGroup li p{line-height: 40px;height: 40px;float: right;margin-right: 20px;margin-top: 10px;}
+    	.setGroup li span{line-height: 30px;height: 30px;float: right;margin-right: 20px;margin-top: 15px;width: auto;background: #f12525;
+    						color: #fff;padding: 0 10px;font-size: 14px;border-radius: 20px;}
+    	.setGroup li .next{float: right;height: 20px;margin-top: 10px;margin-right: 20px;margin-top: 20px;}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+	    <div id="banner">
+	    	<img src="../images/mineBanner.jpg"/>
+	    	<div id="heads">
+<!--	    		<img src="../images/head.jpg"/ id="head">
+--><!--	    		<img src="../images/VIP5.png" id="VIP"/>
+-->	    	</div>
+	    	<div class="score score1"><h2>慈善等级：</h2><h1></h1></div>
+	    	<div class="score"><h2>慈善积分：</h2><h1></h1></div>
+	    </div>
+	    
+    	<ul class="setGroup">
+    		<li><img src="../images/perInfo.jpg"/ class="icon"><h3>个人信息</h3><img src="../images/more.jpg" class="next"/><p>收货地址</p></li>
+    		<li><img src="../images/myOrder.jpg"/ class="icon"><h3>全部订单</h3><img src="../images/more.jpg" class="next"/><p>全部订单</p></li>
+    		<li><img src="../images/myQuan.jpg"/ class="icon"><h3>我的特权</h3><img src="../images/more.jpg" class="next"/><p></p></li>
+    		<li><img src="../images/myJifen.jpg"/ class="icon"><h3>积分兑换</h3><img src="../images/more.jpg" class="next"/><p></p></li>
+    	</ul>
+    	
+    	<ul class="setGroup">
+    		<li><img src="../images/myFriend.jpg"/ class="icon"><h3>我的义友</h3><img src="../images/more.jpg" class="next"/><p></p></li>
+    		<li><img src="../images/messageZhongxin.jpg"/ class="icon"><h3>消息中心</h3><img src="../images/more.jpg" class="next"/><span>新消息</span></li>
+    		<li><img src="../images/sheZhi.jpg"/ class="icon"><h3>设置</h3><img src="../images/more.jpg" class="next"/><p></p></li>
+    	</ul>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+  	window.onload = function(){
+  		var code = new core();
+		var userInfo = JSON.parse(localStorage["user"]);
+		var data = {act:'MyCenterInfo',member_id:userInfo.uid};
+		code.sendXhr(data,successMyCenterInfo,"MyCenterInfo");
+		function successMyCenterInfo(xhr){
+			var MyCenterInfo = xhr.msg;
+			mui(".score h1")[0].innerHTML= MyCenterInfo.lvname;
+			mui(".score h1")[1].innerHTML= MyCenterInfo.member_points;
+			mui("#heads")[0].innerHTML='<img src="'+MyCenterInfo.member_avatar+'"/ id="head">';
+			
+		}
+  		
+  		var clickArr = ["mineinfo","mineorder","mineVIP","minegrade","storeFriend","minemessage","minesetting",]
+  		var clickLi = document.getElementsByTagName("li");
+  		for (var i=0;i<clickLi.length;i++) {
+  			addListener(i);
+  		}
+  		function addListener(i){
+  			clickLi[i].addEventListener("tap",function(){
+  				mui.openWindow({
+				    url: clickArr[i]+".html", 
+				    id:clickArr[i]
+				  });
+  				
+  			})
+  		}
+  	}
+</script>
+</html>

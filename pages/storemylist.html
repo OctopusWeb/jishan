@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	window.onload = function(){
+      		document.getElementById("manage").addEventListener("tap",function(){
+      			mui.openWindow({
+				    url: "storeProduct.html", 
+				    id:"storeProduct"
+				  });
+      		});
+      	}
+    </script>
+</head>
+<style type="text/css">
+	*{margin: 0;padding: 0;font-family: "微软雅黑";font-weight: 400;list-style: none;}
+	#banner{width: 100%;float: left;height: auto;max-height: 300px;overflow: hidden;background: #fff;}
+	#banner img{width: 100%;height: auto;}
+	#storeInfo{width: 100%;float: left;height: 100px;background: #fff;position: relative;}
+	#storeInfo #head{width: 80px;height: 80px;overflow: hidden;border-radius: 100px;float: left;margin-top: 8px;margin-left: 20px;}
+	#storeInfo #head img{width: 100%;height: auto;float: left;}
+	#storeInfo h1{float: left;width: 50%;font-size: 20px;line-height: 25px;padding-left:20px;margin-top: 20px;}
+	#storeInfo h2{float: left;width: 50%;font-size: 16px;color: #999999;line-height: 25px;padding-left:20px ;}
+	#storeInfo button{position:absolute;right: 10px;top: 30px;color: #fd6e3e;height:40px;font-size: 16px;border-radius: 8px;;}
+	
+	#storeShop{width: 100%;float: left;background: #fff;margin-top: 5px;}
+	#storeShop li{float: left;width: 50%;background: #fff;overflow: hidden;height: 230px;text-align: center;margin-top: 10px;border-bottom:1px #ccc solid;position: relative;}
+	#storeShop li div{float: left;width: 100%;height: auto;position: relative;}
+	#storeShop li .pic{width: 150px;height: 150px;margin-bottom: 5px;overflow: hidden;position: absolute;top:0;left: 50%;margin-left: -75px;}
+	#storeShop li .pic img{height: 100%;float: left;width: auto;}
+	#storeShop li h1{font-size: 16px;height: 33px;overflow: hidden;width: 150px;margin: 0 auto;position: absolute;left: 50%;margin-left: -75px;text-align: left;margin-top: 160px;}
+	#storeShop li h2{font-size: 20px;height: 20px;overflow: hidden;color: #f15353;width: 150px;margin: 0 auto;position: absolute;left: 50%;
+					margin-left: -75px;text-align: left;top: 200px;}
+					
+	#guanli{width: 100%;height: auto;float: left;background: #fff;}
+	#guanli button{border: none;background: #22c064;width: 80%;margin: 10px 10%;float: left;padding: 10px 0;font-size: 18px;height:46px;;}
+</style>
+<body>
+	<div class="mui-content">
+	    <div id="banner"><img src="../images/donat2.jpg"/></div>
+	    <div id="storeInfo">
+	    	<div id="head"><img src="../images/head.jpg"/></div>
+	    	<h1>店铺名称</h1>
+	    	<h2>店铺介绍语</h2>
+	    	<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">升级店铺</button>
+	    </div>
+    	<ul id="storeShop">
+    		<li><div class="pic"><img src="../images/sale.jpg"/></div><div><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动</h1><h2>￥54.00</h2></div></li>
+    		<li><div class="pic"><img src="../images/sale.jpg"/></div><div><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动</h1><h2>￥54.00</h2></div></li>
+    		<li><div class="pic"><img src="../images/sale.jpg"/></div><div><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动</h1><h2>￥54.00</h2></div></li>
+    		<li><div class="pic"><img src="../images/sale.jpg"/></div><div><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动</h1><h2>￥54.00</h2></div></li>
+    	</ul>
+    	<div id="guanli">
+    		<button type="button" class="mui-btn mui-btn-success" id="manage">管理商品</button>
+    	</div>
+	</div>
+</body>
+</html>

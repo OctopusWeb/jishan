@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    
+</head>
+<style type="text/css">
+	*{margin:0;padding: 0;font-family: "微软雅黑";font-weight: 400;}
+	.mui-bar{background: #fff;}
+	.mui-content{width: 100%;overflow: hidden;}
+	.mui-content #banner{width: 100%;float: left;height: 150px;background: #10a64f;}
+	.mui-content #banner h1{font-size: 28px;color: #fff;float: left;margin-top: 45px;margin-left: 30px;}
+	.mui-content #banner h2{font-size: 14px;color: #fff;float: left;width: 100%;margin-left: 30px;margin-top: -10px;}
+	.mui-content #banner img{width: 50px;height: 50px;margin-top: 38px;margin-left: 10px;}
+	.mui-content #progress{float: left;width: 100%;background: #fff;margin-top: 10px;border-bottom: 1px #ccc solid;}
+	.mui-content #progress p{width: 94%;margin: 0 3%;font-size: 14px;border-bottom: 1px solid #ccc;padding: 10px 0;float: left;margin-bottom: 10px;}
+	.mui-content #progress h1{float: left;font-size: 14px;margin-left: 10px;}
+	.mui-content #progress h2{float: left;font-size: 18px;margin: 0 -5px 0 2px}
+	.mui-content #progress .progressbar{width: 100%;padding-left:10px ;overflow: hidden;}
+	.mui-content #info{width: 100%;float: left;background: #fff;margin-top: 10px;}
+	.mui-content #info p{width: 94%;margin: 0 3%;font-size: 14px;border-bottom: 1px solid #ccc;padding: 10px 0;float: left;}
+	.mui-content #info span{width: 94%;margin: 0 3%;font-size: 14px;padding: 10px 0;float: left;color: #bfbfbf;}
+	.bar{width:95%;height:5px;background: #ccc;border-radius: 5px;float: left;}
+	.bar span{border-radius: 5px;width:30%;background:#10A64F;height:5px;float:left;display: block;}
+	.progressbar ul{width:108%;margin-bottom: 10px;float: left;}
+	.progressbar ul li{float: left;list-style: none;width:16.66%;color:#ccc;font-size:16px}
+	.progressbar h3{font-size: 14px;color: #10A64F;float: left;margin-left: 20%;width: 10%;text-align: right;}
+	.progressbar h4{font-size: 14px;color: #ccc;float: left;width: 10%;text-align: left;}
+</style>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">我的会员</h1>
+	</header>
+	<div class="mui-content">
+	    <div id="banner"><h1>白银善者</h1><img src="../images/VIP1.jpg"/><h2>会员等级</h2></div>
+	    <div id="progress">
+	    	<p>我的会员</p>
+	    	<div class="progressbar">
+	    		<h3>3200</h3><h4>/6000</h4>
+	    		<div class="bar"><span></span></div>
+	    		<ul>
+	    			<li>L0</li>
+	    			<li>L1</li>
+	    			<li>L2</li>
+	    			<li>L3</li>
+	    			<li>L4</li>
+	    			<li>L5</li>
+	    		</ul>
+	    	</div>
+	    	<h1>距下一个等级还需 </h1><h2>2800</h2><h1>积分</h1>
+	    </div>
+	    <div id="info"><p>积分等级</p><span>青铜善者    0-3000 <br /> 白银善者  3001-6000 <br /> 黄金善者  6001-9999 <br /> 铂金善者  10000-15000 <br /> 钻石善者  15000+</span></div>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+    mui.init();
+    window.onload = function(){
+  		var code = new core();
+		var userInfo = JSON.parse(localStorage["user"]);
+		var data = {act:'MyCenterInfo',member_id:userInfo.uid};
+		code.sendXhr(data,successMyCenterInfo,"MyCenterInfo");
+		function successMyCenterInfo(xhr){
+			var MyCenterInfo = xhr.msg;
+			mui("#banner h1")[0].innerHTML = MyCenterInfo.lvname;
+			mui("#progress h3")[0].innerHTML = MyCenterInfo.member_points;
+			mui("#progress h4")[0].innerHTML = MyCenterInfo.member_points+MyCenterInfo.lonum;
+			mui("#progress h2")[0].innerHTML = MyCenterInfo.lonum;
+			var parWid = MyCenterInfo.lv * 25+MyCenterInfo.member_points/(MyCenterInfo.member_points+MyCenterInfo.lonum)*25;
+			alert(parWid);
+			mui("#progress span")[0].width = parWid+"%";
+			
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    
+    <style type="text/css">
+    	*{margin: 0;padding: 0;font-family: "微软雅黑";font-weight: 400;list-style: none;}
+    	.mui-bar{background: #fff;}
+    	.mui-content{width: 100%;overflow: hidden;}
+    	.mui-content #banner{width: 100%;height: 150px;background: #ed5353;float: left;position: relative;}
+    	.mui-content #banner h1{font-size: 36px;color: #fff;float: left;line-height: 40px;margin: 40px 0 0 20px;font-size: 30px;;}
+    	.mui-content #banner p{font-size: 14px;color: #fff;float: left;line-height: 40px;margin-top: 48px;width: 50%;margin-left: 5px;}
+    	.mui-content #banner span{float: left;color: #fff;width: 50%;margin-left: 20px;font-size: 14px;margin-top: -20px;}
+    	.mui-content #banner img{position: absolute;right: 0;width: 30%;bottom: 0;}
+    	.mui-content #shop{width: 100%;float: left;height: 50px;background: #df4242;}
+    	.mui-content #shop img{height: 40px;width: 40px;float: left;margin: 5px 20px;}
+    	.mui-content #shop h3{color: #fff;float: left;font-size: 16px;line-height: 40px;}
+    	.mui-content #shop #iconback{float: right;height: 30%;width: auto;margin-top: 18px;}
+    	.mui-content #grade{width: 100%;height: 40px;background: #fff;float: left;}
+    	.mui-content #grade h1{font-size: 16px;line-height: 30px;margin-left: 6%;}
+    	.mui-content ul{width: 100%;float: left;width: 100%;height: auto;background: #fff;margin-top: 2px;}
+    	.mui-content ul li{float: left;width: 95%;margin-left: 6%;position: relative;border-bottom: 1px #ccc solid;}
+    	.mui-content ul li h1{font-size: 16px;width: 100%;float: left;padding-top: 10px;}
+    	.mui-content ul li h2{font-size: 14px;width: 100%;color: #333333;float: left;padding-bottom: 10px;}
+    	.mui-content ul li h3{position: absolute;font-size: 30px;color: #ed5353;top: 15px;right: 20px;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">积分兑换</h1>
+	</header>
+	<div class="mui-content">
+	    <div id="banner"><h1></h1><p>分</p><span>慈善积分</span><img src="../images/grade.jpg"/></div>
+	    <div id="shop"><img src="../images/myshop.jpg"/><h3>积分商城</h3><img src="../images/gored.jpg" id="iconback"/></div>
+	    <div id="grade"><h1>积分记录</h1></div>
+	    <ul>
+	    	<!--<li><h1>捐助10元</h1><h2>2015-08-25  10:34</h2><h3>+10</h3></li>
+	    	<li><h1>捐助10元</h1><h2>2015-08-25  10:34</h2><h3>+10</h3></li>
+	    	<li><h1>捐助10元</h1><h2>2015-08-25  10:34</h2><h3>+10</h3></li>-->
+	    </ul>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	window.onload = function(){
+      		var code = new core();
+			var userInfo = JSON.parse(localStorage["user"]);
+			var data = {act:'MyPointslog',member_id:userInfo.uid};
+			code.sendXhr(data,successMyPointslog,"MyPointslog");
+			function successMyPointslog(xhr){
+				var MyPointslog = xhr.msg;
+				var index="";
+				mui("#banner h1")[0].innerHTML = MyPointslog.member_points;
+				for (var i=0;i<MyPointslog.pointlist.length;i++) {
+					var index0="<li><h1>"+MyPointslog.pointlist[i].pl_desc+"</h1><h2>"+MyPointslog.pointlist[i].pl_addtime+"</h2><h3>"+MyPointslog.pointlist[i].pl_points+"</h3></li>"
+					index+=index0;
+				}
+				mui(".mui-content ul")[0].innerHTML = index;
+			}
+      		document.getElementById("shop").addEventListener("tap",function(){
+      			mui.openWindow({
+      				url:"gradeshop.html",
+      				id:"gradeshop"
+      			})
+      		})
+      	}
+    </script>
+</html>

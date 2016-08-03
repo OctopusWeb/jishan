@@ -1,0 +1,462 @@
+{
+  "pages/reg.html": {
+    "resources": [
+      "js/mui.min.js",
+      "images/login_bg1.jpg",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "pages/index.html": {
+    "resources": [
+      "images/logo.png",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/logo_p.png",
+      "images/login_bg.jpg",
+      "images/logop.png",
+      "images/loginbg.jpg"
+    ],
+    "refer": [
+      "pages/reg.html",
+      "pages/log.html"
+    ]
+  },
+  "pages/log.html": {
+    "resources": [
+      "images/login_bg1.jpg",
+      "fonts/mui.ttf",
+      "images/three3.png",
+      "images/three2.png",
+      "images/three1.png",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/loginbg1.jpg",
+      "images/login.png"
+    ],
+    "refer": [
+      "pages/sale.html"
+    ]
+  },
+  "pages/sale.html": {
+    "resources": [
+      "pages/salelist.html",
+      "images/public3_2.jpg",
+      "images/public1_1.jpg",
+      "images/public4_2.jpg",
+      "images/public2_2.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/public22.jpg",
+      "images/public11.jpg",
+      "images/public32.jpg",
+      "images/public42.jpg",
+      "images/public22.png",
+      "images/public11.png",
+      "images/public42.png",
+      "images/public32.png"
+    ],
+    "refer": [
+      "pages/salelist.html",
+      "pages/donat.html",
+      "pages/store.html"
+    ]
+  },
+  "pages/salelist.html": {
+    "resources": [
+      "images/sale_icon.jpg",
+      "images/sale.jpg",
+      "images/saleicon.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "pages/shop_more.html",
+      "pages/sale_more.html",
+      "pages/salemore.html"
+    ]
+  },
+  "pages/shop_morelist.html": {
+    "resources": [
+      "images/shop.jpg",
+      "images/shop_more.jpg"
+    ]
+  },
+  "pages/shop_more.html": {
+    "resources": [
+      "pages/shop_morelist.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "pages/shop_morelist.html"
+    ]
+  },
+  "pages/sale_morelist.html": {
+    "resources": [
+      "images/shop.jpg",
+      "images/shop_more.jpg"
+    ]
+  },
+  "pages/sale_more.html": {
+    "resources": [
+      "pages/sale_morelist.html",
+      "images/share.jpg",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "pages/sale_morelist.html",
+      "pages/sale_buy.html"
+    ]
+  },
+  "pages/sale_buy.html": {
+    "resources": [
+      "images/more.jpg"
+    ],
+    "refer": [
+      "pages/pay.html"
+    ]
+  },
+  "pages/pay.html": {
+    "resources": [
+      "images/pay_icon1.jpg",
+      "images/pay_slected.jpg",
+      "images/pay_icon2.jpg",
+      "images/pay_bg.jpg",
+      "images/pay_icon3.jpg",
+      "images/payicon2.jpg",
+      "images/payicon3.jpg",
+      "images/payslected.jpg",
+      "images/payicon1.jpg",
+      "images/paybg.jpg"
+    ]
+  },
+  "pages/donatInfo.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "images/donatimg.jpg",
+      "images/otherSale.jpg",
+      "images/head.jpg",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/1.mp4"
+    ],
+    "refer": [
+      "pages/don_pay.html",
+      "pages/donpay.html"
+    ]
+  },
+  "pages/donat_list.html": {
+    "resources": [
+      "images/donat2.jpg",
+      "images/donat1.jpg"
+    ],
+    "refer": [
+      "pages/donatInfo.html"
+    ]
+  },
+  "pages/donat.html": {
+    "resources": [
+      "images/public1_2.jpg",
+      "images/public3_2.jpg",
+      "pages/donat_list.html",
+      "js/mui.min.js",
+      "images/public4_2.jpg",
+      "images/public2_1.jpg",
+      "css/mui.min.css",
+      "images/public12.jpg",
+      "images/public21.jpg",
+      "pages/donatlist.html",
+      "images/public32.jpg",
+      "images/public42.jpg",
+      "images/public12.png",
+      "images/public21.png"
+    ],
+    "refer": [
+      "pages/donat_list.html",
+      "pages/store.html",
+      "pages/sale.html",
+      "pages/donatlist.html"
+    ]
+  },
+  "pages/don_pay.html": {
+    "refer": [
+      "pages/don_buy.html"
+    ]
+  },
+  "pages/don_buy.html": {
+    "resources": [
+      "images/more.jpg"
+    ],
+    "refer": [
+      "pages/pay.html"
+    ]
+  },
+  "pages/store.html": {
+    "resources": [
+      "images/public1_2.jpg",
+      "images/public3_1.jpg",
+      "js/mui.min.js",
+      "images/public4_2.jpg",
+      "css/mui.min.css",
+      "pages/store_list.html",
+      "images/public2_2.jpg",
+      "images/public31.jpg",
+      "pages/storelist.html",
+      "images/public22.jpg",
+      "images/public12.jpg",
+      "images/public42.jpg",
+      "images/public31.png"
+    ],
+    "refer": [
+      "pages/store_list.html",
+      "pages/storelist.html",
+      "pages/mine.html",
+      "pages/donat.html"
+    ]
+  },
+  "pages/store_deal.html": {
+    "resources": [
+      "pages/store_deallist.html",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "pages/store_deallist.html",
+      "pages/store_push.html"
+    ]
+  },
+  "pages/store_list.html": {
+    "resources": [
+      "images/shop_icon.png"
+    ],
+    "refer": [
+      "pages/store_deal.html"
+    ]
+  },
+  "pages/store_push.html": {
+    "refer": [
+      "pages/store_success.html"
+    ]
+  },
+  "pages/store_success.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/store_success.png"
+    ]
+  },
+  "pages/donatlist.html": {
+    "resources": [
+      "images/donat2.jpg"
+    ],
+    "refer": [
+      "pages/donatInfo.html"
+    ]
+  },
+  "pages/storelist.html": {
+    "resources": [
+      "images/shopicon.png"
+    ],
+    "refer": [
+      "pages/storedeal.html"
+    ]
+  },
+  "pages/salemorelist.html": {
+    "resources": [
+      "images/shop.jpg",
+      "images/shopmore.jpg"
+    ]
+  },
+  "pages/salemore.html": {
+    "resources": [
+      "images/share.png",
+      "pages/salemorelist.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "pages/salemorelist.html",
+      "pages/salebuy.html"
+    ]
+  },
+  "pages/salebuy.html": {
+    "resources": [
+      "images/more.jpg",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "pages/pay.html"
+    ]
+  },
+  "pages/donpay.html": {
+    "refer": [
+      "pages/donbuy.html"
+    ],
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ]
+  },
+  "pages/donbuy.html": {
+    "resources": [
+      "images/more.jpg"
+    ],
+    "refer": [
+      "pages/pay.html"
+    ]
+  },
+  "pages/storedeal.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "pages/storedeallist.html"
+    ],
+    "refer": [
+      "pages/storedeallist.html",
+      "pages/storepush.html"
+    ]
+  },
+  "pages/storesuccess.html": {
+    "resources": [
+      "images/storesuccess.png"
+    ]
+  },
+  "pages/storepush.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "pages/storesuccess.html"
+    ]
+  },
+  "pages/minelist.html": {
+    "resources": [
+      "images/messageZhongxin.jpg",
+      "images/sheZhi.jpg",
+      "images/myQuan.jpg",
+      "images/myFriend.jpg",
+      "images/mineBanner.jpg",
+      "images/myOrder.jpg",
+      "images/myJifen.jpg",
+      "images/VIP5.png",
+      "images/more.jpg",
+      "images/perInfo.jpg",
+      "images/head.jpg"
+    ],
+    "refer": [
+      "pages/minegrade.html",
+      "pages/mineorder.html",
+      "pages/mineinfo.html",
+      "pages/mineVIP.html",
+      "pages/minemessage.html",
+      "pages/storeFriend.html",
+      "pages/minesetting.html"
+    ]
+  },
+  "pages/mine.html": {
+    "resources": [
+      "images/public41.jpg",
+      "pages/minelist.html",
+      "images/public32.jpg",
+      "images/public41.png",
+      "images/public22.png",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/public12.png",
+      "images/public32.png"
+    ],
+    "refer": [
+      "pages/minelist.html"
+    ]
+  },
+  "pages/minegrade.html": {
+    "resources": [
+      "images/grade.jpg",
+      "images/gored.jpg",
+      "fonts/mui.ttf",
+      "images/myshop.jpg"
+    ]
+  },
+  "pages/mineorder.html": {
+    "resources": [
+      "images/shop.jpg",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/rubish.jpg"
+    ]
+  },
+  "pages/mineinfo.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/more.jpg",
+      "images/head.jpg",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "pages/minenumber.html",
+      "pages/minepassword.html"
+    ]
+  },
+  "pages/mineVIP.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/VIP1.jpg"
+    ]
+  },
+  "pages/minemessage.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/message.jpg"
+    ]
+  },
+  "pages/storeFriend.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/shop.png",
+      "images/VIP5.png",
+      "images/head.jpg"
+    ]
+  },
+  "pages/minesetting.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/more.jpg"
+    ]
+  },
+  "pages/minenumber.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/more.jpg"
+    ]
+  },
+  "pages/minepassword.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf"
+    ]
+  }
+}

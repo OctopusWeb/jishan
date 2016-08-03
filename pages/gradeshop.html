@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+</head>
+<style type="text/css">
+	*{margin: 0;padding: 0;font-family: "微软雅黑";}
+	.mui-bar{background: #fff;}
+	#storeShop{width: 100%;float: left;margin-top: 5px;}
+	#storeShop li{float: left;width: 50%;overflow: hidden;height: 230px;text-align: center;margin-top: 10px;position: relative;}
+	#storeShop li div{float: left;width: 100%;height: auto;position: relative;}
+	#storeShop li .pic{width: 150px;height: 150px;margin-bottom: 5px;overflow: hidden;position: absolute;top:0;left: 50%;margin-left: -75px;}
+	#storeShop li .pic img{height: 100%;float: left;width: auto;}
+	#storeShop li h1{font-size: 16px;font-weight:lighter;line-height:20px;height: 40px;overflow: hidden;width: 150px;margin: 0 auto;position: absolute;left: 50%;margin-left: -75px;text-align: left;margin-top: 160px;}
+	#storeShop li h2{font-size: 20px;height: 20px;overflow: hidden;color: #f15353;width: 150px;margin: 0 auto;position: absolute;left: 50%;
+					margin-left: -75px;text-align: left;top: 200px;}
+</style>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">积分商城</h1>
+	</header>
+	<div class="mui-content">
+	    <ul id="storeShop">
+    	</ul>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+  	var code = new core();
+	var userInfo = JSON.parse(localStorage["user"]);
+	var data = {act:'PoingStore',member_id:userInfo.uid,pageIndex:0};
+	code.sendXhr(data,successPoingStore,"PoingStore");
+	function successPoingStore(xhr){
+		var PoingStore = xhr.msg;
+		console.log(JSON.stringify(PoingStore))
+		var index=""
+		for (var i=0;i<PoingStore.length;i++) {
+			var PoingStore0 = PoingStore[i];
+			var index0 = '<li><div class="pic"><img src="'+PoingStore0.pgoods_image+'"/></div><div><h1>'+PoingStore0.pgoods_name
+			+'</h1><h2>￥'+PoingStore0.pgoods_points+'</h2></div></li>'
+			index+=index0;
+		}
+		mui("#storeShop")[0].innerHTML = index;
+	}
+</script>
+</html>
