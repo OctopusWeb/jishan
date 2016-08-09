@@ -11,7 +11,7 @@
     
     <style type="text/css">
     	*{margin: 0;padding: 0;font-family: "微软雅黑";background: #fff;}
-    	.mui-content{background: #fff;}
+    	.mui-content{background: #fff;width: 100%;}
     	.mui-content img{width: 100%;height: auto;float: left;}
     	.mui-content h1{float: left;width: 96%;font-size: 16px;margin: 15px 2%;line-height: 24px;color: #333;font-weight: lighter;}
     	.mui-content h2{float: left;margin-right:2%;color: #ea203e;font-weight: lighter;}
@@ -29,6 +29,7 @@
     </style>
 </head>
 <body>
+	<div id="bk"><h1>正在加载</h1><img src="../images/loading.gif"/></div>
 	<div class="mui-content">
 	    <img src="images/shop.jpg" id="banner"/>
 	    <h1></h1>
@@ -56,10 +57,11 @@
   	window.onload = function(){
 		var code = new core();
 		var userInfo = JSON.parse(localStorage["user"])
-		var data = {act:'GetJustSelInfo',member_id:userInfo.uid,goods_id:localStorage["goodsId"]};
-		code.sendXhr(data,successGetJustSelInfo,"GetJustSelInfo","http://103.27.5.53:8070/App/JustSellingApi.ashx");
+		var data = {act:'GetGoodsInfo',member_id:userInfo.uid,goods_id:localStorage["goodsId"]};
+		code.sendXhr(data,successGetJustSelInfo,"GetGoodsInfo","http://103.27.5.53:8070/App/JustSellingApi.ashx");
 		function successGetJustSelInfo(xhr){
 			var GetJustSelInfo = xhr.msg;
+			console.log(JSON.stringify(GetJustSelInfo))
 			mui("#banner")[0].src = GetJustSelInfo.goods_image;
 			mui(".mui-content h1")[0].innerHTML = GetJustSelInfo.goods_name;
 			mui(".mui-content b")[0].innerHTML = GetJustSelInfo.goods_price;
@@ -76,7 +78,7 @@
 			var idnex1 = '<p>注：</p><span>'+GetJustSelInfo.mobile_body+'</span>'
 	    	index+=idnex1;
 			mui("#info")[0].innerHTML = index;
-			
+			mui("#bk")[0].style.display="none";
 			
 		}
 	}

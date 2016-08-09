@@ -6,22 +6,15 @@
     <title></title>
     <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="UTF-8">
-      	mui.init();
-      	window.onload = function(){
-      		document.getElementsByTagName("button")[0].addEventListener("tap",function(){
-      			mui.openWindow({
-				    url: "storedeal.html", 
-				    id:"storedeal"
-				  });
-      		})
-      	}
-    </script>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    
     <style type="text/css">
     	*{margin: 0;padding: 0;font-family: "微软雅黑";}
     	.mui-content img{width: 40%;left: 30%;position: absolute;top: 15%;}
     	.mui-content h1{width: 100%;position: absolute;font-size: 16px;color: #999999;text-align: center;top: 50%;font-weight: lighter;}
-    	.mui-content button{border: none;width: 60%;position: absolute;left: 20%;top: 70%;height: 46px;background: #22c064;font-size: 18px;}
+    	.mui-content .mui-btn{border: none;width: 60%;position: absolute;left: 20%;top: 70%;height: 46px;font-size: 18px;}
+    	.mui-content .mui-btn-success{background: #22c064;}
     </style>
 </head>
 <body>
@@ -31,4 +24,49 @@
 	    <button type="button" class="mui-btn mui-btn-success">开通个人义店</button>
 	</div>
 </body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+  	window.onload = function(){
+  		mui("button")[0].addEventListener("tap",goIndex) 
+  		function goIndex(){
+  			mui.openWindow({
+			    url: "storedeal.html", 
+			    id:"storedeal"
+			  });
+  		}
+  		var code = new core();
+		var userInfo = JSON.parse(localStorage["user"])
+		var data = {act:'GetStoreFlag',uid:userInfo.uid};
+		code.sendXhr(data,successGetStoreFlag,"GetStoreFlag","http://103.27.5.53:8070/App/MyStoreApi.ashx");
+		function successGetStoreFlag(xhr){
+			var GetStoreFlag = xhr.msg;
+			if (xhr.code == 0) {
+				alert(GetStoreFlag)
+			}else{
+				var content = mui("button")[0];
+				var conText=""
+				if(GetStoreFlag.flag == 10){
+					conText = "已经提交申请"
+					mui("button")[0].className = "mui-btn";
+					mui("button")[0].removeEventListener("tap",goIndex);
+				}else if(GetStoreFlag.flag == 11){
+					conText = "缴费完成"
+					mui("button")[0].className = "mui-btn";
+					mui("button")[0].removeEventListener("tap",goIndex);
+				}else if(GetStoreFlag.flag == 20){
+					conText = "审核成功"
+					mui("button")[0].className = "mui-btn";
+					mui("button")[0].removeEventListener("tap",goIndex);
+				}else if(GetStoreFlag.flag == 30){
+					conText = "审核失败"
+				}else if(GetStoreFlag.flag == 31){
+					conText = "缴费审核失败"
+				}else if(GetStoreFlag.flag == 40){
+					conText = "审核通过开店"
+				}
+				content.innerHTML = conText;
+			}
+		}
+  	}
+</script>
 </html>

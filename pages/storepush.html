@@ -6,38 +6,9 @@
     <title></title>
     <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="UTF-8">
-      	mui.init();
-      	
-      	window.onload = function(){
-      		document.getElementById("push").addEventListener("tap",function(){
-      			mui.openWindow({
-      				url:"storesuccess.html",
-      				id:"storesuccess"
-      			})
-      		})
-      		
-      		document.addEventListener( "plusready", onPlusReady, false );
-			// 扩展API加载完毕，现在可以正常调用扩展API 
-			function onPlusReady() {
-			}
-			// 从相册中选择图片 
-			function galleryImg() {
-				// 从相册中选择图片
-				console.log("从相册中选择图片:");
-			    plus.gallery.pick( function(path){
-			    	var IDimg = document.getElementsByClassName("push_img");
-			    	IDimg[IDimg.length-1].src=path;
-			    }, function ( e ) {
-			    	console.log( "取消选择图片" );
-			    }, {filter:"image"} );
-			}
-			
-			document.getElementById("push_pic").addEventListener("tap",function(){
-				galleryImg();
-			})
-      	}
-    </script>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    
     <style type="text/css">
    		*{margin: 0;padding: 0;font-family: "微软雅黑";}
    		.mui-bar{background: #fff;}
@@ -54,6 +25,8 @@
     	.mui-content .store_info .store_pic h3{width: 120px;height: 120px;float: left;color: #b5b5b5;font-size:80px;font-weight: 400;text-align: center;
     											line-height: 110px;border: 1px #b5b5b5 solid;margin: 20px;}
     	.push_img{width: 120px;height: auto;float: left;}
+    	
+    	.store_pic img{width: 90%;margin-left: 5%;margin-top: 10px;}
     </style>
 </head>
 <body>
@@ -69,7 +42,9 @@
     		<h2>身份证号</h2><input type="text" placeholder="请输入身份证号"  class="border_no"/>
     		<div class="store_pic">
     			<h2>本人身份证图片(正反面)</h2>
-
+    			<div class="img" id="idCode">
+    			</div>
+				
     			<h3 id="push_pic">+</h3>
     		</div>
 	    </div>
@@ -79,9 +54,90 @@
     		<h2>开户行</h2><input type="text" placeholder="请输入开户行" class="border_no"/>
     		<div class="store_pic">
     			<h2>上传绑定银行卡信息</h2>
-    			<h3>+</h3>
+    			<div class="img" id="bankCode">
+    			</div>
+    			<h3 id="pushBank">+</h3>
     		</div>
 	    </div>
 	</div>
 </body>
+<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	
+      	window.onload = function(){
+      		document.getElementById("push").addEventListener("tap",function(){
+      			var Rtname = mui(".mui-content input")[0].value;
+      			var Ridnum = mui(".mui-content input")[1].value;
+      			var Rbanknum = mui(".mui-content input")[2].value;
+      			var Rbankname = mui(".mui-content input")[3].value;
+  				var Ridpics=""
+  				var Rbankpics = ""
+  				for (var i=0;i<mui("#idCode img").length;i++) {
+  					if(i == mui("#idCode img").length){
+  						Rbankpics = Rbankpics+getBase64Image(mui("#idCode img")[i])
+  					}else{
+  						Rbankpics = Rbankpics+getBase64Image(mui("#idCode img")[i])+","
+  					}
+  				}
+  				for (var i=0;i<mui("#bankCode img").length;i++) {
+  					if(i == mui("#bankCode img").length){
+  						Rbankpics = Rbankpics+getBase64Image(mui("#idCode img")[i])
+  					}else{
+  						Rbankpics = Rbankpics+getBase64Image(mui("#idCode img")[i])+","
+  					}
+  				}
+  				
+  				var code = new core();
+				var userInfo = JSON.parse(localStorage["user"])
+				var data = {act:'submitRequest',uid:userInfo.uid,tname:Rtname,idnum:Ridnum,banknum:Rbanknum,bankname:Rbankname,idpics:Ridpics,bankpics:Rbankpics};
+				code.sendXhr(data,successsubmitRequest,"submitRequest","http://103.27.5.53:8070/App/MyStoreApi.ashx");
+				function successsubmitRequest(xhr){
+					if(xhr.msg == "提交成功"){
+						mui.openWindow({
+		      				url:"storesuccess.html",
+		      				id:"storesuccess"
+		      			})
+					}else{
+						alert(xhr.msg)
+					}
+				}
+      			
+      			
+      		})
+      		function getBase64Image(img) {
+		        var canvas = document.createElement("canvas");
+		        canvas.width = img.width;
+		        canvas.height = img.height;
+		        var ctx = canvas.getContext("2d");
+		        ctx.drawImage(img, 0, 0, img.width, img.height);
+		        var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+		        var dataURL = canvas.toDataURL("image/"+ext);
+		        return dataURL;
+			}
+      		
+      		document.addEventListener( "plusready", onPlusReady, false );
+			// 扩展API加载完毕，现在可以正常调用扩展API 
+			function onPlusReady() {
+			}
+			// 从相册中选择图片 
+			function galleryImg(dom) {
+				// 从相册中选择图片
+				console.log("从相册中选择图片:");
+			    plus.gallery.pick( function(path){
+			    	var index = dom.innerHTML
+			    	dom.innerHTML = index+'<img src="'+path+'"/>'
+			    }, function ( e ) {
+			    	console.log( "取消选择图片" );
+			    }, {filter:"image"} );
+			}
+			
+			document.getElementById("push_pic").addEventListener("tap",function(){
+				galleryImg(mui(".store_pic .img")[0]);
+			})
+			document.getElementById("pushBank").addEventListener("tap",function(){
+				galleryImg(mui(".store_pic .img")[1]);
+			})
+			
+      	}
+    </script>
 </html>

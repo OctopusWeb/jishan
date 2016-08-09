@@ -41,9 +41,9 @@
 			var index=""
 			for (var i=0;i<GetHelpList.length;i++) {
 				if(i==0 || i%5==0){
-					var index0='<div class="selected"><img src="'+GetHelpList[i].helpImg+'"/><h1>'+GetHelpList[i].helpName+'</h1></div>'
+					var index0='<div class="selected"><img src="'+GetHelpList[i].helpImg+'"/><h1 class="'+GetHelpList[i].helpId+'">'+GetHelpList[i].helpName+'</h1></div>'
 				}else{
-					var index0='<div><img src="'+GetHelpList[i].helpImg+'"/><h1>'+GetHelpList[i].helpName+'</h1></div>'
+					var index0='<div><img src="'+GetHelpList[i].helpImg+'"/><h1 class="'+GetHelpList[i].helpId+'">'+GetHelpList[i].helpName+'</h1></div>'
 				}
 				index+=index0;
 			}
@@ -54,14 +54,17 @@
   		
   	}
   	function addEvent(){
-  		var imgs = document.getElementsByTagName("img");
-  		for (var x in imgs) {
-  			imgs[x].addEventListener("tap",function(){
-  				mui.openWindow({
-				    url: "donatInfo.html", 
-				    id:"donatInfo"
-				  });
-  			})
+  		var imgs = mui(".pic_group div");
+  		for (var i=0;i<imgs.length;i++) {
+  			(function(i){
+  				imgs[i].addEventListener("tap",function(){
+  					localStorage.hid = mui(".pic_group div h1")[i].className;
+	  				mui.openWindow({
+					    url: "donatInfo.html", 
+					    id:"donatInfo"
+					  });
+  				})
+  			})(i)
   		}
   	}
 </script>

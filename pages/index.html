@@ -11,6 +11,13 @@
       	function plusReady(){
 			// 全屏显示
 			plus.navigator.setFullscreen( true );
+			plus.geolocation.getCurrentPosition( function ( p ) {
+      			var str = p.address.city;
+      			plus.nativeUI.toast("您所在的位置是"+str)
+      			p.address.citycode ? localStorage.citycode = p.address.citycode : localStorage.citycode = 132;
+			}, function ( e ) {
+				console.log("Gelocation Error: code - "+e.code+"; message - "+e.message);
+			} ,{provider: 'amap'});
 		}
 		if(window.plus){
 			plusReady();
@@ -19,6 +26,7 @@
 		}
       	window.onload=function(){
       		PageInit();
+      		
       	}
       	
       	function PageInit(){

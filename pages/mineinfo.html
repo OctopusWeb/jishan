@@ -64,13 +64,12 @@
       			function galleryImg() {
 				    plus.gallery.pick( function(path){
 				    	var code = new core();
-						var contents = e.value;
 						var userInfo = JSON.parse(localStorage["user"]);
 						var data = {act:'UploadMyPhoto',member_id:userInfo.uid,imgfile:path};
 						code.sendXhr(data,successUploadMyPhoto,"UploadMyPhoto");
 						function successUploadMyPhoto(xhr){
+							plus.nativeUI.toast(xhr.msg);
 							initEvent();
-      						plus.nativeUI.toast(xhr.msg);
 						}
 				    }, function ( e ) {
 				    	console.log( "取消选择图片" );

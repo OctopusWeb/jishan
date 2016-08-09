@@ -30,7 +30,7 @@
 	    <ul>
 	    	<li><h1>图片设置</h1><img src="../images/more.jpg" class="icon"/></li>
 	    	<li><h1>消息提醒设置</h1><img src="../images/more.jpg" class="icon"/></li>
-	    	<li><h1>清理本地缓存</h1><span>9.88M</span><img src="../images/more.jpg" class="icon"/></li>
+	    	<li><h1>清理本地缓存</h1><span>0M</span><img src="../images/more.jpg" class="icon"/></li>
 	    	<li class="select"><h1>意见反馈</h1><img src="../images/more.jpg" class="icon"/></li>
 	    	<li id="about"><h1>关于</h1><span>V1.0.0</span><img src="../images/more.jpg" class="icon"/></li>
 	    </ul>
@@ -60,6 +60,16 @@
 		function successAddFeedback(xhr){
 			plus.nativeUI.toast(xhr.msg);
 		}
+		mui(".mui-content ul li")[0].addEventListener("tap",function(){
+			plus.nativeUI.toast("设置成功");
+		})
+		mui(".mui-content ul li")[1].addEventListener("tap",function(){
+			plus.nativeUI.toast("功能暂未支持");
+		})
+		mui(".mui-content ul li")[2].addEventListener("tap",function(){
+			plus.nativeUI.toast("缓存已清理");
+		})
+
 	}
 </script>
 </html>

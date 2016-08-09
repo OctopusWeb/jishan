@@ -6,17 +6,7 @@
     <title></title>
     <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="UTF-8">
-      	mui.init();
-      	window.onload =function(){
-      		document.getElementsByTagName("button")[0].addEventListener("tap",function(){
-      			mui.openWindow({
-				    url: "donbuy.html", 
-				    id:"donbuy"
-				  });
-      		})
-      	}
-    </script>
+    
     
     <style type="text/css">
     	body{font-family: "微软雅黑";}
@@ -49,4 +39,23 @@
 
 	</div>
 </body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+  	window.onload =function(){
+  		mui(".mui-content h1")[0].innerHTML = localStorage["donatTitle"];
+  		document.getElementsByTagName("button")[0].addEventListener("tap",function(){
+  			if(mui("#money input")[0].value!=""){
+  				localStorage.donatNum = mui("#money input")[0].value;
+	  			localStorage.donatContent = mui("#text input")[0].value;
+				mui.openWindow({
+				    url: "donbuy.html", 
+				    id:"donbuy"
+				  });
+  			}else{
+  				alert("请输入捐助金额")
+  			}
+  			
+  		})
+  	}
+</script>
 </html>

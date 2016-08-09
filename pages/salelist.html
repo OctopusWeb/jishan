@@ -110,10 +110,13 @@
     	#near_sale h3{float: left;width: auto;margin-left: 10px;line-height: 20px;}
     	#near_sale p{float: right;width: auto;line-height: 20px;margin-top: 5px;margin-right:3%;}
     	#near_sale b{font-size:18px;color:#000;text-decoration: none;font-family:"微软雅黑";
-    				font-weight:bold;}*/
+    				font-weight:bold;}
+    				
+    	
     </style>
 </head>
 <body>
+	<div id="bk"><h1>正在加载</h1><img src="../images/loading.gif"/></div>
 	<div class="mui-content">
 			<div id="slider" class="mui-slider">
 				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
@@ -210,31 +213,42 @@
 									for(var i=0;i<mui("#love_sale ul li").length;i++){
 						      			liEvent(mui("#love_sale ul li"),i);
 						      		}
+									mui("#bk")[0].style.display="none";
+									
 								}
 								
 							}else{
 								pageId1 = 0;
 								var code = new core();
 								var userInfo = JSON.parse(localStorage["user"])
-								var data = {act:'nearStoreList',member_id:userInfo.uid,pageIndex:pageId0};
+								console.log(localStorage["citycode"])
+								var data = {act:'nearStoreList',proId:localStorage["citycode"],pageIndex:pageId0};
 								code.sendXhr(data,successGetJustSelList2,"nearStoreList","http://103.27.5.53:8070/App/JustSellingApi.ashx");
 								function successGetJustSelList2(xhr){
 									var GetJustSelList = xhr.msg;
-									var html3 = ""
-									for (var i=0;i<GetJustSelList.length;i++) {
-										var html31 ='<li class="'+GetJustSelList[i].storeId+'"><img src="'+GetJustSelList[i].storeImg+
-										'"/><div id="icon"><img src="'+GetJustSelList[i].store_avatar+'"/></div><h1>'+
-										GetJustSelList[i].goods_id+'</h1><h3>店铺义品<b>'+GetJustSelList[i].goodsCounts+
-										'</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li>'
-										html3+=html31;
+									if(xhr.code == 0){
+										mui("#near_sale ul")[0].innerHTML = GetJustSelList;
+									}else{
+										console.log(JSON.stringify(GetJustSelList))
+										var html3 = ""
+										for (var i=0;i<GetJustSelList.length;i++) {
+											var html31 ='<li class="'+GetJustSelList[i].storeId+'"><img src="'+GetJustSelList[i].storeImg+
+											'"/><div id="icon"><img src="'+GetJustSelList[i].store_avatar+'"/></div><h1>'+
+											GetJustSelList[i].goods_id+'</h1><h3>店铺义品<b>'+GetJustSelList[i].goodsCounts+
+											'</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li>'
+											html3+=html31;
+										}
+										mui("#near_sale ul")[0].innerHTML = html3;
+										for(var i=0;i<mui("#near_sale ul li").length;i++){
+							      			liEvent(mui("#near_sale ul li"),i);
+							      		}
 									}
-									mui("#near_sale ul")[0].innerHTML = html3;
-									for(var i=0;i<mui("#near_sale ul li").length;i++){
-						      			liEvent(mui("#near_sale ul li"),i);
-						      		}
+									
+									
 								}
 								
 							}
+							
 						}
 						function upFun(index,pageId0,pageId1){
 							if(index==0){
@@ -264,22 +278,26 @@
 								pageId1 ++;
 								var code = new core();
 								var userInfo = JSON.parse(localStorage["user"])
-								var data = {act:'nearStoreList',proId:"11000",pageIndex:pageId0};
+								var data = {act:'nearStoreList',proId:localStorage["citycode"],pageIndex:pageId0};
 								code.sendXhr(data,successGetJustSelList4,"nearStoreList","http://103.27.5.53:8070/App/JustSellingApi.ashx");
 								function successGetJustSelList4(xhr){
 									var GetJustSelList = xhr.msg;
-									var html3 = mui("#near_sale ul")[0].innerHTML;
-									for (var i=0;i<GetJustSelList.length;i++) {
-										var html31 ='<li class="'+GetJustSelList[i].storeId+'"><img src="'+GetJustSelList[i].storeImg+
-										'"/><div id="icon"><img src="'+GetJustSelList[i].store_avatar+'"/></div><h1>'+
-										GetJustSelList[i].goods_id+'</h1><h3>店铺义品<b>'+GetJustSelList[i].goodsCounts+
-										'</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li>'
-										html3+=html31;
-									}
-									mui("#near_sale ul")[0].innerHTML = html3;
-									for(var i=0;i<mui("#near_sale ul li").length;i++){
-						      			liEvent(mui("#near_sale ul li"),i);
-						      		}
+									if(xhr.code == 0){
+										mui("#near_sale ul")[0].innerHTML = GetJustSelList;
+									}else{
+										var html3 = mui("#near_sale ul")[0].innerHTML;
+										for (var i=0;i<GetJustSelList.length;i++) {
+											var html31 ='<li class="'+GetJustSelList[i].storeId+'"><img src="'+GetJustSelList[i].storeImg+
+											'"/><div id="icon"><img src="'+GetJustSelList[i].store_avatar+'"/></div><h1>'+
+											GetJustSelList[i].goods_id+'</h1><h3>店铺义品<b>'+GetJustSelList[i].goodsCounts+
+											'</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li>'
+											html3+=html31;
+										}
+										mui("#near_sale ul")[0].innerHTML = html3;
+										for(var i=0;i<mui("#near_sale ul li").length;i++){
+							      			liEvent(mui("#near_sale ul li"),i);
+							      		}
+									}	
 								}
 								
 							}
@@ -302,45 +320,7 @@
 			      	}
 				});
 			})(mui);
-//    	window.onload = function(){
-//    		var deceleration = mui.os.ios?0.003:0.0009;
-//				$('.mui-scroll-wrapper').scroll({
-//					bounce: false,
-//					indicators: true, //是否显示滚动条
-//					deceleration:deceleration
-//				});
-//    		(function($) {
-//				$('.mui-scroll-wrapper').scroll({
-//					indicators: true //是否显示滚动条
-//				});
-//
-//				var html2 = '<ul><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li><li><img src="../images/sale.jpg"/><h1>卓棒（Jawbone）UP3 蓝牙智能健康运动 </h1><a>￥</a><h2>499</h2><h3>市场价:<b>599</b></h3><span>50件</span><p>剩余：</p></li></ul>';
-//				var html3 = '<ul><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li><li><img src="../images/sale.jpg"/><div id="icon"><img src="../images/saleicon.jpg"/></div><h1>店铺名称</h1><h3>店铺义品<b>120</b>件</h3><p>捐助方式<b>5.00</b>%/件</p></li></ul>';
-//				var item2 = document.getElementById('item2mobile');
-//				var item3 = document.getElementById('item3mobile');
-//				item2.querySelector('.mui-scroll').innerHTML = html2;
-//				item3.querySelector('.mui-scroll').innerHTML = html3;
-//				AddListener();
-//				function AddListener(){
-//		      		var pages1 = document.getElementById("item2mobile").getElementsByTagName("li");
-//		      		var pages2 = document.getElementById("item3mobile").getElementsByTagName("li");
-//		      		for(var i=0;i<pages1.length;i++){
-//		      			liEvent(pages1,i);
-//		      		}
-//		      		for(var i=0;i<pages2.length;i++){
-//		      			liEvent(pages2,i);
-//		      		}
-//		      	}
-//		      	function liEvent(pages,x){
-//		      		pages[x].addEventListener("tap",function(){ 
-//		      				mui.openWindow({
-//							    url: "salemore.html", 
-//							    id:"salemore"
-//							  });
-//		      		})
-//		      	}
-//			})(mui);
-//    	}
+
       	
     </script>
 </html>

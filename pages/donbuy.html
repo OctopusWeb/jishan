@@ -6,17 +6,7 @@
     <title></title>
     <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="UTF-8">
-      	mui.init();
-      	window.onload = function(){
-      		document.getElementById("payBtn").addEventListener("tap",function(){
-      			mui.openWindow({
-				    url: "pay.html", 
-				    id:"pay"
-				  });
-      		})
-      	}
-    </script>
+    
     
     <style type="text/css">
         *{font-family: "微软雅黑";}
@@ -57,4 +47,21 @@
 	    </div>
 	</div>
 </body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+  	window.onload = function(){
+  		var userInfo = JSON.parse(localStorage["user"]);
+  		mui("#shop_name h1")[0].innerHTML = localStorage["donatTitle"];
+  		mui("#buy_num h2")[0].innerHTML = localStorage["donatNum"]+"元";
+  		mui("#buy_name h3")[0].innerHTML = userInfo.uname;
+  		mui("#buy_name h4")[0].innerHTML = userInfo.mobile;
+		 
+  		document.getElementById("payBtn").addEventListener("tap",function(){
+  			mui.openWindow({
+			    url: "pay1.html", 
+			    id:"pay1"
+			  });
+  		})
+  	}
+</script>
 </html>

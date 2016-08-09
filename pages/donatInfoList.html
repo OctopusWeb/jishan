@@ -6,19 +6,8 @@
     <title></title>
     <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="UTF-8">
-      	mui.init();
-      	
-      	window.onload = function(){
-      		document.getElementById("handsup").addEventListener("tap",function(){
-      			mui.openWindow({
-				    url: "donpay.html", 
-				    id:"donpay"
-				  });
-      		})
-      	}
-      	
-    </script>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
     <style type="text/css">
     	*{margin: 0;padding: 0;font-family: "微软雅黑";}
     	.mui-bar{background: #fff;}
@@ -52,52 +41,150 @@
     </style>
 </head>
 <body>
+	<div id="bk"><h1>正在加载</h1><img src="../images/loading.gif"/></div>
 	<div class="mui-content">
-	    <div class="donatGroup">
-	    	<img src="../images/donatimg.jpg"/>
-	    	<h1>支教偏远山区 为爱众筹</h1>
-	    	<p>新疆伊犁州新源县别斯托别乡学校的15个孩子来说终身难忘，因为这一天，他们将在海航旅游“为爱而行 助飞梦想”活动的安排下，走出边疆，来到梦寐以求的北京。伴随着大巴车抵达环境优美的北京唐拉雅秀酒店，孩子们映入眼帘的是海航旅游集团、北京师范大学的志愿者准备的精致礼物。欢快的穿上了印制了本次活动的T恤衫，高喊“北京，我们来了！”</p>
-	    	<div class="like"><button type="button" class="mui-btn">赞8,558</button><button type="button" class="mui-btn">关注4,558</button></div>
+	    <div class="donatGroup" id="donatGroup1">
+	    	<img src=""/>
+	    	<h1></h1>
+	    	<p></p>
+	    	<div class="like"><button type="button" class="mui-btn">赞</button><button type="button" class="mui-btn">关注</button></div>
 	    </div>
 	    
-	    <div class="donatGroup">
+	    <div class="donatGroup" id="donatGroup2">
 	    	<video width="100%" autoplay="true">
-	    		<source src="../images/1.mp4" type="audio/mp4"></source>
+	    		<source src="" type="audio/mp4"></source>
 	    		"您的浏览器不支持播放视频功能或者未联网"
 	    	</video>
 	    </div>
-	    <div class="donatGroup">
+	    <div class="donatGroup" id="donatGroup3">
 	    	<h2>爱心支持者</h2>
 	    	<ul>
-	    		<li><img src="../images/head.jpg"/></li>
-	    		<li><img src="../images/head.jpg"/></li>
-	    		<li><img src="../images/head.jpg"/></li>
-	    		<li><img src="../images/head.jpg"/></li>
+	    		<li><img src=""/></li>
 	    	</ul>
 	    </div>
-	    <div class="donatGroup">
-	    	<p  id="donatGroup_info">新疆伊犁州新源县别斯托别乡学校的15个孩子来说终身难忘，因为这一天，他们将在海航旅游“为爱而行 助飞梦想”活动的安排下，走出边疆，来到梦寐以求的北京。伴随着大巴车抵达环境优美的北京唐拉雅秀酒店，孩子们映入眼帘的是海航旅游集团、北京师范大学的志愿者准备的精致礼物。欢快的穿上了印制了本次活动的T恤衫，高喊“北京，我们来了！”</p>
-	    	<h4>支持者</h4><h3>6,195位 </h3>
+	    <div class="donatGroup" id="donatGroup4">
+	    	<p  id="donatGroup_info"></p>
+	    	<h4>支持者</h4><h3>位 </h3>
 	    	<button type="button" class="mui-btn mui-btn-success" id="handsup">去支持</button>
 	    </div>
-	    <div class="donatGroup">
+	    <div class="donatGroup" id="donatGroup5">
 	    	<h1>其他义卖</h1>
-	    	<div class="otherSale">
-	    		<img src="../images/otherSale.jpg"/>
-	    		<h5>感觉很不错，决定转给你们，给生活添彩</h5>
-	    		<h6>因为它曾多次执行毛泽东主席及其他中央领导人的重要专机任务。同学们争相和熟悉的飞机模型合影</h6>
-	    	</div>
-	    	<div class="otherSale">
-	    		<img src="../images/otherSale.jpg"/>
-	    		<h5>感觉很不错，决定转给你们，给生活添彩</h5>
-	    		<h6>因为它曾多次执行毛泽东主席及其他中央领导人的重要专机任务。同学们争相和熟悉的飞机模型合影</h6>
-	    	</div>
-	    	<div class="otherSale">
-	    		<img src="../images/otherSale.jpg"/>
-	    		<h5>感觉很不错，决定转给你们，给生活添彩</h5>
-	    		<h6>因为它曾多次执行毛泽东主席及其他中央领导人的重要专机任务。同学们争相和熟悉的飞机模型合影</h6>
-	    	</div>
 	    </div>
 	</div>
 </body>
+<script type="text/javascript" charset="UTF-8">
+  	mui.init();
+  	window.onload = function(){
+  		var code = new core();
+		var data = {act:'GetHelpInfo',hid:localStorage["hid"]};
+		code.sendXhr(data,successGetHelpInfo,"GetHelpInfo","http://103.27.5.53:8070/App/DonationApi.ashx");
+		function successGetHelpInfo(xhr){
+			var GetHelpList = xhr.msg;
+			if(xhr.code == 0){
+				alert(xhr.msg)
+				return
+			}
+			mui("#donatGroup1 img")[0].src = GetHelpList.helpImg;
+			mui("#donatGroup1 h1")[0].innerHTML = GetHelpList.helpName;
+			mui("#donatGroup1 p")[0].innerHTML = GetHelpList.helpContent;
+			mui("#donatGroup1 button")[0].innerHTML = "赞"+GetHelpList.zanCounts;
+			mui("#donatGroup1 button")[1].innerHTML = "关注"+GetHelpList.attendCounts;
+			if (GetHelpList.video==null) {
+				mui("#donatGroup2 source")[0].src = GetHelpList.video.src;
+			}else{
+				mui("#donatGroup2")[0].innerHTML=""
+			}
+			
+			mui("#donatGroup4 p")[0].innerHTML = GetHelpList.helpContent
+			mui("#donatGroup4 h3")[0].innerHTML = GetHelpList.helpCounts+"位"
+			
+			
+			if (GetHelpList.helpUserList.length==0) {
+				mui("#donatGroup3")[0].innerHTML = " ";
+			}else{
+				var index = " ";
+				for(var i=0;i<GetHelpList.helpUserList.length;i++){
+					var index0 =' <li><img src="'+GetHelpList.helpUserList[i].Item3+'"/></li>'
+					index+=index0;
+				}
+				mui("#donatGroup3 ul")[0].innerHTML = index;
+			}
+			
+			if(GetHelpList.xsymList.length==0){
+				mui("#donatGroup5")[0].innerHTML = " ";
+			}else{
+				var index1 = "<h1>其他义卖</h1>";
+				for (var i =0;i<GetHelpList.xsymList.length;i++) {
+					var index2 = '<div class="otherSale"><img src="'+GetHelpList.xsymList[i].goods_image+
+					'"/><h5 class="'+GetHelpList.xsymList[i].goods_id+'">'+GetHelpList.xsymList[i].goods_name+'</h5><h6>'+GetHelpList.xsymList[i].goods_jingle+
+					'</h6></div>'
+					index1+=index2;
+				}
+				mui("#donatGroup5")[0].innerHTML = index1;
+			}
+			for(var i=0;i<mui(".otherSale").length;i++){
+				(function(i){
+					mui(".otherSale")[i].addEventListener("tap",function(){
+						localStorage.goodsId=mui(".otherSale h5")[i].className;
+		  				mui.openWindow({
+						    url: "salemore.html", 
+						    id:"salemore"
+						  });
+					})
+				})(i);
+				
+				
+			}
+			
+			mui("#donatGroup1 button")[0].addEventListener("tap",function(){
+				zan();
+			})
+			mui("#donatGroup1 button")[1].addEventListener("tap",function(){
+				attend();
+			})
+			mui("#bk")[0].style.display="none";
+		}
+		function zan(){
+			var code = new core();
+			var userInfo = JSON.parse(localStorage["user"])
+			var data = {act:'zan',hid:localStorage["hid"],uid:userInfo.uid};
+			code.sendXhr(data,successzan,"zan","http://103.27.5.53:8070/App/DonationApi.ashx");
+			function successzan(xhr){
+				var GetHelpList = xhr.msg;
+				if(xhr.code == 0){
+					alert(xhr.msg)
+					return
+				}else{
+					mui("#donatGroup1 button")[0].innerHTML = xhr.msg;
+				}
+				
+			}
+		}
+		function attend(){
+			var code = new core();
+			var userInfo = JSON.parse(localStorage["user"])
+			var data = {act:'attend',hid:localStorage["hid"],uid:userInfo.uid};
+			code.sendXhr(data,successattend,"attend","http://103.27.5.53:8070/App/DonationApi.ashx");
+			function successattend(xhr){
+				var GetHelpList = xhr.msg;
+				if(xhr.code == 0){
+					alert(xhr.msg)
+					return
+				}else{
+					mui("#donatGroup1 button")[1].innerHTML = xhr.msg;
+				}
+				
+			}
+		}
+  		document.getElementById("handsup").addEventListener("tap",function(){
+  			localStorage.donatTitle = mui("#donatGroup1 h1")[0].innerHTML;
+  			mui.openWindow({
+			    url: "donpay.html", 
+			    id:"donpay"
+			  });
+  		})
+  		
+  	}
+  	
+</script>
 </html>

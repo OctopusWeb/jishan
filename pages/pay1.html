@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../js/md5.js" ></script>
+    <script type="text/javascript" src="../js/core.js" ></script>
+    
+    
+    <style type="text/css">
+    	*{font-family: "微软雅黑";margin: 0;padding: 0;}
+    	.mui-bar{background: #fff;}
+    	.mui-bar h1{font-weight: bold;}
+    	#shop_info{width: 100%;float: left;position: relative;margin-top: 10px;}
+    	#shop_info h1{font-size: 16px;float: left;width: 100px;text-align: right;line-height: 30px;margin-top: 0px;font-weight: lighter;}
+    	#shop_info h3{width: 100%;float: left;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size: 16px;
+    				padding-left: 120px;margin-top: -30px;padding-right: 40px;font-weight: lighter;}
+    	#shop_info h2{color: #e62424;float: left;line-height: 25px;margin-left: 20px;font-size: 20px;margin-top: 0px;font-weight: lighter;}
+    	#pay_bg{width: 100%;float: left;background: url(../images/paybg.jpg) repeat-x;background-size:3%;height: 20px;}
+    	#pay_way{float: left;background: #fff;width: 100%;}
+    	#pay_way li{float: left;border-top: 1px #ccc solid;width: 100%;list-style: none;height: 80px;position: relative;}
+    	#pay_way li .pay_icon{height:auto;width:auto;float: left;background: #f4f3f1;margin:15px;border-radius: 5px;position: relative;}
+    	#pay_way li .pay_icon img{width:60px;height: auto;float: left;padding:0 5px;}
+    	#pay_way li  h1{font-size: 16px;font-weight: 400;margin-top: 20px;}
+    	.mui-content #pay_way li  h2{font-size: 14px;color: #666;font-weight: 400;line-height: 30px;}
+    	#pay_btn{border: none;width: 90%;margin: 20px 5%;background: #f16a19;height: 40px;font-size: 16px;;}
+    	#pay_way .pay_selected{width: 20px;height: 20px;background: #fff;position: absolute;right: 10px;top: 30px;border-radius: 10px;border: 1px #ccc solid;overflow: hidden;}
+    	#pay_way .pay_selected img{width: 100%;display: none;}
+    	#pay_way .selected img{display: block;}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">支付订单</h1>
+	</header>
+	<div class="mui-content">
+		<div id="shop_info"><h1>订单名称:</h1><h3>商品介绍</h3><h1>订单金额:</h1><h2>元</h2></div>
+		<div id="pay_bg"></div>
+		<ul id="pay_way">
+			<li class="selected"><div class="pay_icon"><img src="../images/payicon1.jpg"/></div><h1>银行卡支付</h1><h2>支持储蓄卡和信用卡</h2><div class="pay_selected"><img src="../images/payslected.jpg"/></div></li>
+			<li><div class="pay_icon"><img src="../images/payicon2.jpg"/></div><h1>微信支付</h1><h2>推荐安装微信5.0以上版本的使用</h2><div class="pay_selected"><img src="../images/payslected.jpg"/></div></li>
+			<li><div class="pay_icon"><img src="../images/payicon3.jpg"/></div><h1>支付宝支付</h1><h2>推荐有支付宝账号的用户使用</h2><div class="pay_selected"><img src="../images/payslected.jpg"/></div></li>
+		</ul>
+		<button type="button" class="mui-btn mui-btn-warning" id="pay_btn">确认支付</button>
+	</div>
+</body>
+<script type="text/javascript" charset="UTF-8">
+      	mui.init();
+      	
+      	window.onload = function(){
+      		mui("#shop_info h3")[0].innerHTML = localStorage["donatTitle"];
+			mui("#shop_info h2")[0].innerHTML = localStorage["donatNum"]+"元";
+      		var payway = document.getElementsByTagName("li");
+      		clearClass();
+      		addClass(payway[0],"selected"); 
+      		bindClick();
+      		function clearClass(){
+	      		for(var i = 0;i<payway.length;i++){
+	      			removeClass(payway[i],"selected");
+	      		}
+      		}
+      		
+      		function bindClick(){
+      				payway[0].addEventListener("tap",function(){
+      					clearClass();
+      					addClass(payway[0],"selected"); 
+      				});
+      				payway[1].addEventListener("tap",function(){
+      					clearClass();
+      					addClass(payway[1],"selected"); 
+      				});
+      				payway[2].addEventListener("tap",function(){
+      					clearClass();
+      					addClass(payway[2],"selected"); 
+      				})
+      		}
+      		function hasClass(obj, cls) {  
+			    return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));  
+			}  
+			  
+			function addClass(obj, cls) {  
+			    if (!hasClass(obj, cls)) obj.className += " " + cls;  
+			}  
+			  
+			function removeClass(obj, cls) {  
+			    if (hasClass(obj, cls)) {  
+			        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');  
+			        obj.className = obj.className.replace(reg, ' ');  
+			    }  
+			}  
+			
+			mui("#pay_btn")[0].addEventListener("tap",function(){
+//				var code = new core();
+//				var userInfo = JSON.parse(localStorage["user"])
+//				var data = {act:'helpPaySuccess',hid:localStorage["hid"],uid:userInfo.uid,money:localStorage["donatNum"]};
+//				code.sendXhr(data,successhelpPaySuccess,"helpPaySuccess","http://103.27.5.53:8070/App/DonationApi.ashx");
+//				function successhelpPaySuccess(xhr){
+//					var GetHelpList = xhr.msg;
+//					if(xhr.code == 0){
+//						alert(xhr.msg)
+//						return
+//					}else{
+//						mui("#donatGroup1 button")[1].innerHTML = xhr.msg;
+//					}
+//					
+//				}
+			})
+      	}
+    </script>
+</html>

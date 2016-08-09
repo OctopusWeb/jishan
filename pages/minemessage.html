@@ -19,7 +19,12 @@
 	.mui-content ul li h1{float: left;font-size: 16px;width: 50%;margin-top: 20px;}
 	.mui-content ul li h2{float: left;font-size: 14px;width: 50%;color:#666}
 	.mui-content ul li p{position: absolute;right: 20px;top: 18px;color: #333;font-size: 15px;}
-
+	
+	.messgeBox{width: 100%;height: 100%;background: rgba(0,0,0,0.5);position: fixed;display: none;}
+	.messge{width: 80%;height: 80%;position: absolute;background: #fff;left: 10%;top: 5%;border-radius: 10px;}
+	.messge h1{width: 100%;text-align: center;line-height: 40px;font-size: 16px;border-bottom: 1px #ccc solid;}
+	.messge h2{width: 100%;text-align: center;line-height: 30px;font-size: 16px;}
+	.messge p{width: 90%;margin: 10px 5%;line-height: 30px;font-size: 16px;}
 </style>
 <body>
 	<header class="mui-bar mui-bar-nav">
@@ -33,6 +38,13 @@
 	    	<li><img src="../images/message.jpg"/><h1>系统消息</h1><h2>点击查看你的捐助信息</h2><p>12:30</p></li>
 	    	<li><img src="../images/message.jpg"/><h1>系统消息</h1><h2>点击查看你的捐助信息</h2><p>12:30</p></li>-->
 	    </ul>
+	    <div class="messgeBox">
+	    	<div class="messge">
+	    		<h1>系统消息</h1>
+	    		<h2>2016/7/27 15:01</h2>
+	    		<p>点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看点击查看</p>
+	    	</div>
+	    </div>
 	</div>
 </body>
 <script type="text/javascript" charset="UTF-8">
@@ -51,6 +63,26 @@
 				index+=index0;
 			}
 			mui(".mui-content ul")[0].innerHTML = index;
+			for (var i=0;i<mui(".mui-content ul li").length;i++) {
+				(function(i){
+					mui(".mui-content ul li")[i].addEventListener("tap",function(){
+						mui(".messgeBox")[0].style.display = "block"
+						mui(".messge h1")[0].innerHTML =mui(".mui-content ul li h1")[i].innerHTML;
+						mui(".messge h2")[0].innerHTML =mui(".mui-content ul li p")[i].innerHTML;
+						mui(".messge p")[0].innerHTML =mui(".mui-content ul li h2")[i].innerHTML;
+					})
+				})(i);
+			}
+		}
+		mui(".messgeBox")[0].addEventListener("tap",function(e){
+			e.stopPropagation();
+			mui(".messgeBox")[0].style.display = "none"
+		})
+		mui(".messge")[0].addEventListener("tap",function(e){
+			e.stopPropagation();
+			
+		})
+		function showMessage(i){
 			
 		}
 	}
