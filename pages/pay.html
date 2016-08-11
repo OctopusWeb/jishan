@@ -26,10 +26,12 @@
     	#pay_way li .pay_icon img{width:60px;height: auto;float: left;padding:0 5px;}
     	#pay_way li  h1{font-size: 16px;font-weight: 400;margin-top: 20px;}
     	.mui-content #pay_way li  h2{font-size: 14px;color: #666;font-weight: 400;line-height: 30px;}
-    	#pay_btn{border: none;width: 90%;margin: 20px 5%;background: #f16a19;height: 40px;font-size: 16px;;}
+    	#pay_btn{border: none;width: 90%;margin: 20px 5%;background: #f16a19;height: 40px;font-size: 16px;}
     	#pay_way .pay_selected{width: 20px;height: 20px;background: #fff;position: absolute;right: 10px;top: 30px;border-radius: 10px;border: 1px #ccc solid;overflow: hidden;}
     	#pay_way .pay_selected img{width: 100%;display: none;}
     	#pay_way .selected img{display: block;}
+    	iframe{position: fixed;top: 0;left: 0;display: none;background: #fff;}
+    	#pay_finish{border: none;width: 90%;margin: 20px 5%;background: #f16a19;height: 40px;font-size: 16px;position: fixed;bottom: 10px;display: none;z-index: 100;}
     </style>
 </head>
 <body>
@@ -46,6 +48,8 @@
 			<li><div class="pay_icon"><img src="../images/payicon3.jpg"/></div><h1>支付宝支付</h1><h2>推荐有支付宝账号的用户使用</h2><div class="pay_selected"><img src="../images/payslected.jpg"/></div></li>
 		</ul>
 		<button type="button" class="mui-btn mui-btn-warning" id="pay_btn">确认支付</button>
+		<iframe src="" width="100%" height="100%"></iframe>
+		<button type="button" class="mui-btn mui-btn-warning" id="pay_finish">关闭支付窗口</button>
 	</div>
 </body>
 <script type="text/javascript" charset="UTF-8">
@@ -99,6 +103,60 @@
 			        obj.className = obj.className.replace(reg, ' ');  
 			    }  
 			}  
+			
+			mui("#pay_btn")[0].addEventListener("tap",function(){
+				var money = mui("#shop_info h2")[0].innerHTML;
+				var payUrl = "http://payshan.com/index.php/Api/Payment/send?";
+				var datas = {
+					back_url: "http://103.27.5.53:8070/App/pay.ashx?act=PayOrderData",
+					front_url: "http://103.27.5.53:8070/App/pay.ashx?act=PayOrderData",
+					m_pay: money,
+					app_id:72,
+					channel:0
+				}
+				mui.ajax(payUrl, {
+					data: datas,
+					dataType: 'json',
+					type: 'GET',
+					timeout: 5000, //超时时间设置为5秒；
+					success: successFun,
+					error:errorFun
+				});
+				function successFun(xhr){
+					alert(xhr)
+				}
+				function errorFun(xhr){
+					mui("iframe")[0].src = xhr.responseURL;
+					mui("iframe")[0].style.display = "block"
+					mui("#pay_finish")[0].style.display = "block"
+				}
+			})
+			mui("#pay_finish")[0].addEventListener("tap",function(){
+				var payUrl = " http://payshan.com/index.php/Api/Payment/query?";
+				var datas = {
+					order_id: localStorage["goodsId"]
+				}
+				mui.ajax(payUrl, {
+					data: datas,
+					dataType: 'json',
+					type: 'GET',
+					timeout: 5000, //超时时间设置为5秒；
+					success: successFun,
+					error:errorFun
+				});
+				function successFun(xhr){
+					plus.nativeUI.toast(xhr.info.msg);
+					mui("iframe")[0].src = "";
+					mui("iframe")[0].style.display = "none"
+					mui("#pay_finish")[0].style.display = "none"
+				}
+				function errorFun(xhr){
+					console.log(xhr)
+					mui("iframe")[0].src = "";
+					mui("iframe")[0].style.display = "none"
+					mui("#pay_finish")[0].style.display = "none"
+				}
+			})
       	}
     </script>
 </html>

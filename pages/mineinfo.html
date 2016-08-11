@@ -32,7 +32,7 @@
 	</header>
 	<div class="mui-content">
 	    <ul>
-	    	<li><img src="../images/head.jpg"><span>更换头像</span><img src="../images/more.jpg" class="icon"/></li>
+	    	<li><img src="../images/head.jpg" class="head"><span>更换头像</span><img src="../images/more.jpg" class="icon"/></li>
 	    	<li><h1>昵称</h1><p>用户名</p><span>修改</span><img src="../images/more.jpg" class="icon"/></li>
 	    	<li id="number"><h1>手机号</h1><span></span><img src="../images/more.jpg" class="icon"/></li>
 	    	<li id="password"><h1>密码</h1><span>修改</span><img src="../images/more.jpg" class="icon"/></li>
@@ -65,7 +65,8 @@
 				    plus.gallery.pick( function(path){
 				    	var code = new core();
 						var userInfo = JSON.parse(localStorage["user"]);
-						var data = {act:'UploadMyPhoto',member_id:userInfo.uid,imgfile:path};
+						var img = appendFile(path);
+						var data = {act:'UploadMyPhoto',member_id:userInfo.uid,imgfile:img};
 						code.sendXhr(data,successUploadMyPhoto,"UploadMyPhoto");
 						function successUploadMyPhoto(xhr){
 							plus.nativeUI.toast(xhr.msg);
@@ -76,6 +77,36 @@
 				    }, {filter:"image"} );
 				}
       		})
+      		
+			function appendFile(path){
+			    var img = new Image();
+		        img.src = path;
+		        img.onload = function () {
+		            var that = this;
+		            var w = that.width,
+		                h = that.height,
+		                scale = w / h; 
+		                w = 480 || w;              
+		                h = w / scale;
+		            var canvas = document.createElement('canvas');
+		            var ctx = canvas.getContext('2d');
+		            $(canvas).attr({width : w, height : h});
+		            ctx.drawImage(that, 0, 0, w, h);
+		            var base64 = canvas.toDataURL('image/jpeg', 1 || 0.8 );   
+		            return base64; 
+			    }
+			
+			}
+      		function getBase64Image(img) {
+		        var canvas = document.createElement("canvas");
+		        canvas.width = img.width;
+		        canvas.height = img.height;
+		        var ctx = canvas.getContext("2d");
+		        ctx.drawImage(img, 0, 0, img.width, img.height);
+		        var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+		        var dataURL = canvas.toDataURL("image/"+ext);
+		        return dataURL;
+			}
       		mui(".mui-content ul li")[1].addEventListener("tap",function(){
 				plus.nativeUI.prompt( "更改用户名: ", function(e){
 					if(e.index==0){
